@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Trimmomatic &mdash; RBGE&#39;s pipelines  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Cutadapt" href="cutadapt.html" />
+    <link rel="prev" title="FastQC" href="fastqc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RBGE's pipelines
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wheretostore.html">Where do I store my data?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wheretorun.html">Where do I run my analysis?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installsoftware.html">Installing Software</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quality of the raw reads:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rawreads.html">Raw reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fastqc.html">FastQC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Trimmomatic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cutadapt.html">Cutadapt</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Target Capture:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">Mapping reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aligning.html">Alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phylogeny.html">Inferring a phylogeny</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RBGE's pipelines</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Trimmomatic</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/trimmomatic.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="trimmomatic">
+<h1>Trimmomatic<a class="headerlink" href="#trimmomatic" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://www.usadellab.org/cms/?page=trimmomatic">Trimmomatic</a> is a tool developed to trim poor quality and adaptors from Illumina data. If you do not have Trimmomatic installed, please check <a class="reference internal" href="installsoftware.html"><span class="doc">Installing Software</span></a>.</p>
+<p>Let’s check and record the version we are using by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>trimmomatic -version
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">0</span>.39
+</pre></div>
+</div>
+<p>Here, we are analysing paired-end NGS data. Therefore, in this case, Trimmomatic uses as input the forward (ending in <code class="docutils literal notranslate"><span class="pre">_1</span></code>) and reverse (ending in <code class="docutils literal notranslate"><span class="pre">_2</span></code>) reads and outputs four files: forward paired, forward unpaired, reverse paired and reverse unpaired. In the paired output files we will have the reads for which both mates survived the trimming, and in the unpaired ones we will have the reads for which only one of the mates survived. Here is an example of a Trimmomatic command for a single accession:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>trimmomatic PE -phred33 FG35_1.fastq.gz FG35_2.fastq.gz FG35_forward_paired.fq.gz FG35_forward_unpaired.fq.gz FG35_reverse_paired.fq.gz FG35_reverse_unpaired.fq.gz ILLUMINACLIP:/path/to/the/adaptor/sequence/file/e.g./TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+</pre></div>
+</div>
+<p>Let’s go through each part of this long command, with adapted information from the manual:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PE</span></code>: indicated our data is paired-end</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-phred33</span></code>: -phred33 or -phred64 specifies the base quality encoding. If no quality encoding is specified, it will be determined automatically (since version 0.32). In our case, if your data is yourger than 5 years-old, it is very likely that it is following Phred+33. Here is more information about it: <a class="reference external" href="https://www.drive5.com/usearch/manual/quality_score.html">https://www.drive5.com/usearch/manual/quality_score.html</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ILLUMINACLIP:TruSeq3-PE.fa:2:30:10</span></code> will use the file TruSeq3-PE.fa to remove adapters. Depending on how you have installed Trimmomatic, this file will be in different places. An alternative is to download it directly from their github page: <a class="reference external" href="https://github.com/usadellab/Trimmomatic">https://github.com/usadellab/Trimmomatic</a>. You can see that they have several adapter files available, and the correct one will depend on which type of data you have. From their manual: <cite>Suggested adapter sequences are provided for TruSeq2 (as used in GAII machines) and TruSeq3 (as used by HiSeq and MiSeq machines), for both single-end and paired-end mode. These sequences have not been extensively tested, and depending on specific issues which may occur in library preparation, other sequences may work better for a given dataset.</cite> And see some notes from Illumina here <a class="reference external" href="https://support.illumina.com/bulletins/2016/12/what-sequences-do-i-use-for-adapter-trimming.html">https://support.illumina.com/bulletins/2016/12/what-sequences-do-i-use-for-adapter-trimming.html</a>.Once you downloaded it, you can take a quick look to see what it looks like with <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">TruSeq3-PE.fa</span></code> for example.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LEADING:3</span></code> removes leading low quality or N bases (below quality 3).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRAILING:3</span></code> removes trailing low quality or N bases (below quality 3).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SLIDINGWINDOW:4:15</span></code> scans the read with a 4-base wide sliding window, cutting when the average quality per base drops below 15.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MINLEN:36</span></code> drops reads below the 36 bases long.</p></li>
+</ol>
+<p>To save time, here is the same command but using a loop and our <code class="docutils literal notranslate"><span class="pre">acc</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">read</span> f <span class="p">;</span> <span class="k">do</span>
+trimmomatic PE -phred33 <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span>_1.fastq.gz <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span>_2.fastq.gz <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span>_forward_paired.fq.gz <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span>_forward_unpaired.fq.gz <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span>_reverse_paired.fq.gz <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span>_reverse_unpaired.fq.gz ILLUMINACLIP:/path/to/the/adaptor/sequence/file/e.g./TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 <span class="p">;</span> <span class="k">done</span> &lt; acc
+</pre></div>
+</div>
+<p>Don’t forget to read the manual for more details and options: <a class="reference external" href="http://www.usadellab.org/cms/?page=trimmomatic">http://www.usadellab.org/cms/?page=trimmomatic</a>.</p>
+<p>This is what you should have in your folder after Trimmomatic finishes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FG113                           FG113_reverse_unpaired.fq.gz    FG35_reverse_paired.fq.gz       FGIntype_forward_unpaired.fq.gz KGD465_forward_paired.fq.gz     zygia917_1_fastqc.zip
+FG113_1.fastq.gz                FG35                            FG35_reverse_unpaired.fq.gz     FGIntype_reverse_paired.fq.gz   KGD465_forward_unpaired.fq.gz   zygia917_2.fastq.gz
+FG113_1_fastqc.html             FG35_1.fastq.gz                 FGIntype                        FGIntype_reverse_unpaired.fq.gz KGD465_reverse_paired.fq.gz     zygia917_2_fastqc.html
+FG113_1_fastqc.zip              FG35_1_fastqc.html              FGIntype_1.fastq.gz             KGD465                          KGD465_reverse_unpaired.fq.gz   zygia917_2_fastqc.zip
+FG113_2.fastq.gz                FG35_1_fastqc.zip               FGIntype_1_fastqc.html          KGD465_1.fastq.gz               acc                             zygia917_forward_paired.fq.gz
+FG113_2_fastqc.html             FG35_2.fastq.gz                 FGIntype_1_fastqc.zip           KGD465_1_fastqc.html            fastqcfiles                     zygia917_forward_unpaired.fq.gz
+FG113_2_fastqc.zip              FG35_2_fastqc.html              FGIntype_2.fastq.gz             KGD465_1_fastqc.zip             renaming.sh                     zygia917_reverse_paired.fq.gz
+FG113_forward_paired.fq.gz      FG35_2_fastqc.zip               FGIntype_2_fastqc.html          KGD465_2.fastq.gz               zygia917                        zygia917_reverse_unpaired.fq.gz
+FG113_forward_unpaired.fq.gz    FG35_forward_paired.fq.gz       FGIntype_2_fastqc.zip           KGD465_2_fastqc.html            zygia917_1.fastq.gz
+FG113_reverse_paired.fq.gz      FG35_forward_unpaired.fq.gz     FGIntype_forward_paired.fq.gz   KGD465_2_fastqc.zip             zygia917_1_fastqc.html
+</pre></div>
+</div>
+<p>Let’s take a quick look in one of the output files. The <code class="docutils literal notranslate"><span class="pre">.gz</span></code> extension indicated that those files are compressed. We can use <code class="docutils literal notranslate"><span class="pre">zless</span></code> in this case:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zless FG35_forward_paired.fq.gz
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>@HWI-M01145:124:000000000-A78G3:1:1101:15521:1338 <span class="m">1</span>:N:0:ACAGTG
+GTTCATACAACACATAACTCAGAAAAATGGATTCAGCTGTTCACCTCCGCCAATACAAATTGATAAATGAAGAATTCTGCATCAGAATGAAAGTATGAAATTACATTTTAGAAGGGTGTTACCTCAGATTGAGTACACGCAGCAGTTGCAAGGACTTCCCAATTCCAAAAGACAGATGGGAATCACTCAAAGGCCTCCGCTTAAAGTCAGATAGCCATCC
+TGCTATCTACAAGTGTGTGAAACTTTACGG
++
+CCCCCFFFFFFDGGGGGGGGGGHHHHGHHHHHHHHHHHHHHHHHHHHHGGGGGHHHHHHHHHHHGHHHHHHHHHHHHHHHGHHHHHHHHHHHHHGHHHGHHHHHGHHHHHHHHHHGGFGGHHHHHHHFHHHGHHHHHHGGGGGHHHHHHHHHGHHHHHHHHHHHHHHHHHHGHHHFHHHHHHHHHHHHHHHHHHHHHHGGGGGHHHHHHGHHGHGHHHGHHHHHHHHHHHHHGFHFFFGGGGGGGGGGGG
+@HWI-M01145:124:000000000-A78G3:1:1101:16121:1366 <span class="m">1</span>:N:0:ACAGTG
+CAGTCAACTGATCTCCCAACAATATTGAAGTGCCAAAAGTGATAGCCGAAACAAATATAGGAGAGCTCCAAAAGATAAAAGTGATGAAAGCCTGAGAATAGAGGGCTTTACGTAGCCACTTGAACTCTACTCCACGCATTTCTTCCAGCTGTATTCGATATCGATCTTCCCAAGCTTGCAACTTGAGGATCCTCATATTTCTCAAGCATTCAGATGTTTTTCTCATCCTTTCATCCTTAGCAGCCATTAA
++
+BBCACFFFFFFFGGGGGGGGGGHHHHHHHHHHHHHGHHHHHHHHHHHGGGGGHGHHHHHHHHHHGHHHHHHHHHGHHHHHHHGHHHGHHHHHHHHHHHHHHHHHGGHHHHHGGHHEHHHHHHHHHHHHHHHHHHHGGGGGHHHHHHHHHHHHHHHHHGHGGHGHHHHHHHHHHHGGHHGHHGHHGFHHGHHGGHHHHHHHHHGHHHGHGHHHHHHHHHHGGHHHHHHHHHHHHHFHGHGGGGGGGGGGFF
+</pre></div>
+</div>
+<p>Each read has four lines of information, so here we see two reads. In the first line beginning with <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> we see information from the sequencing machine (in this case information about the flowcell in a Illumina machine), the nucleotide sequence is stored on the second line, the third line has a <code class="docutils literal notranslate"><span class="pre">+</span></code> and the fourth line stores the quality scores.</p>
+<p>Now, let’s run FastQC on the groups of reads output from Trimmomatic. First let’s create a file with the names of Trimmomatic output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls *fq.gz &gt; fastqctrimfiles
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat fastqctrimfiles
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FG113_forward_paired.fq.gz
+FG113_forward_unpaired.fq.gz
+FG113_reverse_paired.fq.gz
+FG113_reverse_unpaired.fq.gz
+FG35_forward_paired.fq.gz
+FG35_forward_unpaired.fq.gz
+FG35_reverse_paired.fq.gz
+FG35_reverse_unpaired.fq.gz
+FGIntype_forward_paired.fq.gz
+FGIntype_forward_unpaired.fq.gz
+FGIntype_reverse_paired.fq.gz
+FGIntype_reverse_unpaired.fq.gz
+KGD465_forward_paired.fq.gz
+KGD465_forward_unpaired.fq.gz
+KGD465_reverse_paired.fq.gz
+KGD465_reverse_unpaired.fq.gz
+zygia917_forward_paired.fq.gz
+zygia917_forward_unpaired.fq.gz
+zygia917_reverse_paired.fq.gz
+zygia917_reverse_unpaired.fq.gz
+</pre></div>
+</div>
+<p>And run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">read</span> f<span class="p">;</span> <span class="k">do</span> fastqc <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">done</span> &lt; fastqctrimfiles
+</pre></div>
+</div>
+<p>Once it is done, inspect the <code class="docutils literal notranslate"><span class="pre">html</span></code> files visually to check the impact of trimming (and whether files look good to carry on if you are running this analysis with your own data). We are now going to the next step, further trimming with <a class="reference external" href="https://cutadapt.readthedocs.io/en/stable/">Cutadapt</a>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="cutadapt.html" class="btn btn-neutral float-right" title="Cutadapt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="fastqc.html" class="btn btn-neutral float-left" title="FastQC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021 | Bioinformatics | RBGE.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

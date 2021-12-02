@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Alignment &mdash; RBGE&#39;s pipelines  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Inferring a phylogeny" href="phylogeny.html" />
+    <link rel="prev" title="Mapping reads" href="mapping.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RBGE's pipelines
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wheretostore.html">Where do I store my data?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wheretorun.html">Where do I run my analysis?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installsoftware.html">Installing Software</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quality of the raw reads:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rawreads.html">Raw reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fastqc.html">FastQC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trimmomatic.html">Trimmomatic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cutadapt.html">Cutadapt</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Target Capture:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">Mapping reads</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phylogeny.html">Inferring a phylogeny</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RBGE's pipelines</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Alignment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/aligning.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="alignment">
+<h1>Alignment<a class="headerlink" href="#alignment" title="Permalink to this headline">¶</a></h1>
+<p>We are now working in our folder <code class="docutils literal notranslate"><span class="pre">By_locus</span></code> (you can check with <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, print working directory).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>comp10344_c0_seq1.fasta   comp36654_c0_seq1.fasta   comp41904_c0_seq1.fasta   comp44802_c0_seq1.fasta   comp46726_c0_seq2.fasta   comp50371_c0_seq3.fasta   comp53028_c0_seq2.fasta   comp54662_c0_seq1.fasta
+comp1072929_c0_seq1.fasta comp36697_c0_seq1.fasta   comp42092_c0_seq1.fasta   comp44856_c1_seq1.fasta   comp46777_c0_seq1.fasta   comp50626_c0_seq4.fasta   comp53141_c1_seq1.fasta   comp54952_c0_seq1.fasta
+comp1160393_c0_seq1.fasta comp36900_c2_seq1.fasta   comp42265_c0_seq1.fasta   comp44887_c0_seq1.fasta   comp46880_c0_seq1.fasta   comp50657_c0_seq1.fasta   comp53167_c1_seq1.fasta   comp55034_c0_seq4.fasta
+comp1313186_c0_seq1.fasta comp37141_c0_seq1.fasta   comp42274_c0_seq1.fasta   comp44921_c0_seq1.fasta   comp47028_c0_seq2.fasta   comp50758_c0_seq4.fasta   comp53194_c2_seq3.fasta   comp55182_c0_seq2.fasta
+comp1560296_c0_seq1.fasta comp37145_c0_seq1.fasta   comp42358_c0_seq1.fasta   comp45038_c0_seq1.fasta   comp47219_c0_seq1.fasta   comp50780_c0_seq2.fasta   comp53216_c0_seq2.fasta   comp55210_c1_seq1.fasta
+comp15827_c0_seq1.fasta   comp37261_c0_seq1.fasta   comp42391_c0_seq1.fasta   comp45125_c0_seq2.fasta   comp47508_c0_seq1.fasta   comp51015_c0_seq1.fasta   comp53258_c0_seq3.fasta   comp55228_c0_seq8.fasta
+comp1585458_c0_seq1.fasta comp37293_c0_seq1.fasta   comp42471_c0_seq1.fasta   comp45170_c0_seq2.fasta   comp47631_c0_seq1.fasta   comp51076_c0_seq1.fasta   comp53279_c0_seq1.fasta   comp55300_c0_seq3.fasta
+comp1771791_c0_seq1.fasta comp37377_c0_seq1.fasta   comp42557_c0_seq1.fasta   comp45310_c0_seq2.fasta   comp47751_c0_seq1.fasta   comp51091_c2_seq5.fasta   comp53279_c1_seq1.fasta   comp55479_c0_seq1.fasta
+comp19402_c0_seq1.fasta   comp37644_c0_seq1.fasta   comp42703_c0_seq1.fasta   comp45467_c0_seq1.fasta   comp48019_c0_seq2.fasta   comp51118_c0_seq1.fasta   comp53340_c0_seq1.fasta   comp55618_c0_seq2.fasta
+comp2109528_c0_seq1.fasta comp38281_c0_seq1.fasta   comp42706_c0_seq1.fasta   comp45684_c0_seq1.fasta   comp48120_c0_seq1.fasta   comp51236_c3_seq1.fasta   comp53352_c0_seq1.fasta   comp55651_c0_seq1.fasta
+comp23076_c0_seq1.fasta   comp38882_c0_seq1.fasta   comp42737_c0_seq1.fasta   comp45703_c0_seq1.fasta   comp48138_c0_seq1.fasta   comp51262_c0_seq4.fasta   comp53451_c0_seq1.fasta   comp55820_c0_seq1.fasta
+comp2500263_c0_seq1.fasta comp39051_c0_seq2.fasta   comp43079_c0_seq1.fasta   comp45862_c0_seq1.fasta   comp48212_c0_seq2.fasta   comp51289_c0_seq1.fasta   comp53459_c0_seq1.fasta   comp55854_c0_seq4.fasta
+comp26820_c0_seq1.fasta   comp39192_c0_seq1.fasta   comp43262_c0_seq1.fasta   comp45867_c0_seq1.fasta   comp48218_c0_seq1.fasta   comp51314_c1_seq5.fasta   comp53516_c0_seq1.fasta   comp55873_c0_seq1.fasta
+comp26820_c2_seq1.fasta   comp39332_c0_seq1.fasta   comp43290_c0_seq1.fasta   comp45906_c0_seq1.fasta   comp48341_c1_seq1.fasta   comp51335_c0_seq1.fasta   comp53540_c0_seq3.fasta   comp55885_c0_seq14.fasta
+comp27108_c0_seq1.fasta   comp39487_c0_seq1.fasta   comp43316_c0_seq1.fasta   comp45994_c1_seq1.fasta   comp48510_c0_seq6.fasta   comp51482_c0_seq2.fasta   comp53595_c0_seq20.fasta  comp55899_c0_seq1.fasta
+comp27375_c0_seq1.fasta   comp39600_c0_seq2.fasta   comp43396_c0_seq1.fasta   comp46025_c0_seq1.fasta   comp48513_c0_seq2.fasta   comp51566_c0_seq1.fasta   comp53604_c0_seq2.fasta   comp56022_c2_seq1.fasta
+comp27897_c0_seq1.fasta   comp39985_c0_seq4.fasta   comp43405_c0_seq1.fasta   comp46036_c0_seq1.fasta   comp48566_c2_seq1.fasta   comp51608_c0_seq1.fasta   comp53688_c0_seq1.fasta   comp56134_c0_seq6.fasta
+comp2794198_c0_seq1.fasta comp40415_c0_seq2.fasta   comp43423_c0_seq1.fasta   comp46048_c0_seq1.fasta   comp48873_c0_seq1.fasta   comp51641_c0_seq2.fasta   comp53769_c0_seq1.fasta   comp56192_c1_seq2.fasta
+comp28617_c0_seq1.fasta   comp40581_c0_seq1.fasta   comp43426_c1_seq1.fasta   comp46121_c0_seq1.fasta   comp49023_c0_seq1.fasta   comp51649_c1_seq1.fasta   comp53857_c0_seq1.fasta   comp56254_c1_seq2.fasta
+comp28839_c0_seq1.fasta   comp40592_c0_seq5.fasta   comp43486_c0_seq1.fasta   comp46261_c0_seq1.fasta   comp49083_c0_seq1.fasta   comp51744_c1_seq15.fasta  comp53868_c0_seq1.fasta   comp56258_c0_seq1.fasta
+comp28983_c0_seq1.fasta   comp40615_c0_seq1.fasta   comp43766_c1_seq1.fasta   comp46270_c0_seq1.fasta   comp49109_c0_seq4.fasta   comp51757_c0_seq1.fasta   comp53881_c0_seq1.fasta   comp56397_c0_seq2.fasta
+comp30427_c0_seq1.fasta   comp40678_c0_seq1.fasta   comp43766_c2_seq1.fasta   comp46275_c0_seq1.fasta   comp49294_c0_seq2.fasta   comp52070_c1_seq13.fasta  comp53904_c0_seq1.fasta   comp56474_c0_seq2.fasta
+comp30607_c0_seq1.fasta   comp40970_c0_seq1.fasta   comp43779_c0_seq1.fasta   comp46303_c0_seq1.fasta   comp49369_c0_seq1.fasta   comp52112_c0_seq3.fasta   comp53952_c0_seq2.fasta   comp56606_c0_seq4.fasta
+comp3174_c0_seq1.fasta    comp40970_c1_seq1.fasta   comp43819_c0_seq1.fasta   comp46343_c0_seq1.fasta   comp49386_c0_seq1.fasta   comp52180_c0_seq2.fasta   comp53978_c0_seq1.fasta   comp56609_c0_seq1.fasta
+comp31767_c0_seq1.fasta   comp41024_c0_seq1.fasta   comp43866_c0_seq1.fasta   comp46351_c1_seq1.fasta   comp49395_c0_seq1.fasta   comp52237_c0_seq1.fasta   comp54031_c0_seq1.fasta   comp56733_c0_seq5.fasta
+comp31780_c0_seq1.fasta   comp41081_c0_seq1.fasta   comp43995_c0_seq2.fasta   comp46465_c0_seq1.fasta   comp49523_c1_seq1.fasta   comp52492_c1_seq2.fasta   comp54072_c0_seq2.fasta   comp56747_c1_seq2.fasta
+comp32261_c0_seq1.fasta   comp41267_c0_seq2.fasta   comp44153_c0_seq1.fasta   comp46465_c2_seq1.fasta   comp49588_c0_seq1.fasta   comp52663_c0_seq1.fasta   comp54142_c0_seq1.fasta   comp56887_c0_seq1.fasta
+comp338739_c0_seq1.fasta  comp41473_c0_seq1.fasta   comp44212_c0_seq1.fasta   comp46472_c0_seq1.fasta   comp49673_c0_seq1.fasta   comp52686_c0_seq2.fasta   comp54299_c0_seq1.fasta   comp56896_c0_seq1.fasta
+comp33962_c0_seq1.fasta   comp41570_c0_seq1.fasta   comp44244_c0_seq1.fasta   comp46489_c0_seq1.fasta   comp49874_c0_seq1.fasta   comp52711_c0_seq1.fasta   comp54421_c1_seq1.fasta   comp56903_c0_seq3.fasta
+comp35561_c0_seq1.fasta   comp41589_c0_seq1.fasta   comp44391_c1_seq1.fasta   comp46497_c0_seq2.fasta   comp49929_c0_seq1.fasta   comp52736_c0_seq1.fasta   comp54430_c2_seq4.fasta   comp56968_c0_seq5.fasta
+comp35797_c0_seq1.fasta   comp41658_c0_seq1.fasta   comp44503_c0_seq2.fasta   comp46551_c0_seq1.fasta   comp50161_c0_seq1.fasta   comp52829_c0_seq3.fasta   comp54453_c0_seq1.fasta   comp710440_c0_seq1.fasta
+comp36008_c0_seq1.fasta   comp41758_c0_seq1.fasta   comp44609_c0_seq1.fasta   comp46553_c1_seq1.fasta   comp50170_c0_seq12.fasta  comp52915_c0_seq2.fasta   comp54484_c0_seq1.fasta   comp816108_c0_seq1.fasta
+comp36444_c1_seq1.fasta   comp41859_c0_seq1.fasta   comp44627_c0_seq1.fasta   comp46693_c0_seq1.fasta   comp50204_c0_seq1.fasta   comp52981_c1_seq1.fasta   comp546012_c0_seq1.fasta  comp826804_c0_seq1.fasta
+</pre></div>
+</div>
+<p>We will use the script <code class="docutils literal notranslate"><span class="pre">tidy_mafft.sh</span></code> to replace name of sequences with just the accession name, convert bases to uppercase, and align the sequences with the software <a class="reference external" href="https://mafft.cbrc.jp/alignment/software/">mafft</a>.</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+tidy_mafft.sh<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/bash -x</span>
+ <span class="c1"># to go from the output of switch multifastas.py to the mafft files ready to trimal</span>
+ <span class="c1">#Catherine Kidner 18 Nov 2014</span>
+
+
+ <span class="nb">echo</span> <span class="s2">&quot;Hello world&quot;</span>
+
+ <span class="nv">acc</span><span class="o">=</span><span class="nv">$1</span>
+
+ <span class="nb">echo</span> <span class="s2">&quot;You&#39;re working on accession </span><span class="nv">$1</span><span class="s2">&quot;</span>
+
+
+ <span class="nv">switched</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>.fasta
+ <span class="nv">no_loci_name</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_f.fna
+ <span class="nv">mafft</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_mafft.fasta
+ <span class="nv">fna</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>.fna
+ <span class="nv">fasta</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>.fasta
+
+ sed <span class="s2">&quot;s/_</span><span class="nv">$acc</span><span class="s2">//g&quot;</span> <span class="nv">$switched</span> &gt; <span class="nv">$no_loci_name</span>
+ sed <span class="s2">&quot;s/[rywsmkdvhb]/n/g&quot;</span> <span class="nv">$no_loci_name</span>  &gt; <span class="nv">$fna</span>
+ tr <span class="s1">&#39;[:lower:]&#39;</span>  <span class="s1">&#39;[:upper:]&#39;</span> &lt; <span class="nv">$fna</span> &gt; <span class="nv">$fasta</span>
+ rm <span class="nv">$no_loci_name</span>
+ rm <span class="nv">$fna</span>
+ mafft --thread <span class="m">8</span> <span class="nv">$fasta</span> &gt; <span class="nv">$mafft</span>
+
+
+ <span class="nb">exit</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+</details><p>We will use the <code class="docutils literal notranslate"><span class="pre">locus_list</span></code> as input in the loop, so we need to copy it to the folder we are working on:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp ../locus_list .
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">read</span> f<span class="p">;</span> <span class="k">do</span> ./tidy_mafft.sh <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">done</span> &lt; locus_list
+</pre></div>
+</div>
+<p>Let’s see what we have in our folder now:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>comp10344_c0_seq1.fasta         comp39051_c0_seq2_mafft.fasta   comp43819_c0_seq1.fasta         comp46777_c0_seq1_mafft.fasta   comp51335_c0_seq1.fasta         comp54031_c0_seq1_mafft.fasta
+comp10344_c0_seq1_mafft.fasta   comp39192_c0_seq1.fasta         comp43819_c0_seq1_mafft.fasta   comp46880_c0_seq1.fasta         comp51335_c0_seq1_mafft.fasta   comp54072_c0_seq2.fasta
+comp1072929_c0_seq1.fasta       comp39192_c0_seq1_mafft.fasta   comp43866_c0_seq1.fasta         comp46880_c0_seq1_mafft.fasta   comp51482_c0_seq2.fasta         comp54072_c0_seq2_mafft.fasta
+comp1072929_c0_seq1_mafft.fasta comp39332_c0_seq1.fasta         comp43866_c0_seq1_mafft.fasta   comp47028_c0_seq2.fasta         comp51482_c0_seq2_mafft.fasta   comp54142_c0_seq1.fasta
+comp1160393_c0_seq1.fasta       comp39332_c0_seq1_mafft.fasta   comp43995_c0_seq2.fasta         comp47028_c0_seq2_mafft.fasta   comp51566_c0_seq1.fasta         comp54142_c0_seq1_mafft.fasta
+comp1160393_c0_seq1_mafft.fasta comp39487_c0_seq1.fasta         comp43995_c0_seq2_mafft.fasta   comp47219_c0_seq1.fasta         comp51566_c0_seq1_mafft.fasta   comp54299_c0_seq1.fasta
+comp1313186_c0_seq1.fasta       comp39487_c0_seq1_mafft.fasta   comp44153_c0_seq1.fasta         comp47219_c0_seq1_mafft.fasta   comp51608_c0_seq1.fasta         comp54299_c0_seq1_mafft.fasta
+comp1313186_c0_seq1_mafft.fasta comp39600_c0_seq2.fasta         comp44153_c0_seq1_mafft.fasta   comp47508_c0_seq1.fasta         comp51608_c0_seq1_mafft.fasta   comp54421_c1_seq1.fasta
+comp1560296_c0_seq1.fasta       comp39600_c0_seq2_mafft.fasta   comp44212_c0_seq1.fasta         comp47508_c0_seq1_mafft.fasta   comp51641_c0_seq2.fasta         comp54421_c1_seq1_mafft.fasta
+comp1560296_c0_seq1_mafft.fasta comp39985_c0_seq4.fasta         comp44212_c0_seq1_mafft.fasta   comp47631_c0_seq1.fasta         comp51641_c0_seq2_mafft.fasta   comp54430_c2_seq4.fasta
+comp15827_c0_seq1.fasta         comp39985_c0_seq4_mafft.fasta   comp44244_c0_seq1.fasta         comp47631_c0_seq1_mafft.fasta   comp51649_c1_seq1.fasta         comp54430_c2_seq4_mafft.fasta
+comp15827_c0_seq1_mafft.fasta   comp40415_c0_seq2.fasta         comp44244_c0_seq1_mafft.fasta   comp47751_c0_seq1.fasta         comp51649_c1_seq1_mafft.fasta   comp54453_c0_seq1.fasta
+comp1585458_c0_seq1.fasta       comp40415_c0_seq2_mafft.fasta   comp44391_c1_seq1.fasta         comp47751_c0_seq1_mafft.fasta   comp51744_c1_seq15.fasta        comp54453_c0_seq1_mafft.fasta
+comp1585458_c0_seq1_mafft.fasta comp40581_c0_seq1.fasta         comp44391_c1_seq1_mafft.fasta   comp48019_c0_seq2.fasta         comp51744_c1_seq15_mafft.fasta  comp54484_c0_seq1.fasta
+comp1771791_c0_seq1.fasta       comp40581_c0_seq1_mafft.fasta   comp44503_c0_seq2.fasta         comp48019_c0_seq2_mafft.fasta   comp51757_c0_seq1.fasta         comp54484_c0_seq1_mafft.fasta
+comp1771791_c0_seq1_mafft.fasta comp40592_c0_seq5.fasta         comp44503_c0_seq2_mafft.fasta   comp48120_c0_seq1.fasta         comp51757_c0_seq1_mafft.fasta   comp546012_c0_seq1.fasta
+comp19402_c0_seq1.fasta         comp40592_c0_seq5_mafft.fasta   comp44609_c0_seq1.fasta         comp48120_c0_seq1_mafft.fasta   comp52070_c1_seq13.fasta        comp546012_c0_seq1_mafft.fasta
+comp19402_c0_seq1_mafft.fasta   comp40615_c0_seq1.fasta         comp44609_c0_seq1_mafft.fasta   comp48138_c0_seq1.fasta         comp52070_c1_seq13_mafft.fasta  comp54662_c0_seq1.fasta
+comp2109528_c0_seq1.fasta       comp40615_c0_seq1_mafft.fasta   comp44627_c0_seq1.fasta         comp48138_c0_seq1_mafft.fasta   comp52112_c0_seq3.fasta         comp54662_c0_seq1_mafft.fasta
+comp2109528_c0_seq1_mafft.fasta comp40678_c0_seq1.fasta         comp44627_c0_seq1_mafft.fasta   comp48212_c0_seq2.fasta         comp52112_c0_seq3_mafft.fasta   comp54952_c0_seq1.fasta
+comp23076_c0_seq1.fasta         comp40678_c0_seq1_mafft.fasta   comp44802_c0_seq1.fasta         comp48212_c0_seq2_mafft.fasta   comp52180_c0_seq2.fasta         comp54952_c0_seq1_mafft.fasta
+comp23076_c0_seq1_mafft.fasta   comp40970_c0_seq1.fasta         comp44802_c0_seq1_mafft.fasta   comp48218_c0_seq1.fasta         comp52180_c0_seq2_mafft.fasta   comp55034_c0_seq4.fasta
+comp2500263_c0_seq1.fasta       comp40970_c0_seq1_mafft.fasta   comp44856_c1_seq1.fasta         comp48218_c0_seq1_mafft.fasta   comp52237_c0_seq1.fasta         comp55034_c0_seq4_mafft.fasta
+comp2500263_c0_seq1_mafft.fasta comp40970_c1_seq1.fasta         comp44856_c1_seq1_mafft.fasta   comp48341_c1_seq1.fasta         comp52237_c0_seq1_mafft.fasta   comp55182_c0_seq2.fasta
+comp26820_c0_seq1.fasta         comp40970_c1_seq1_mafft.fasta   comp44887_c0_seq1.fasta         comp48341_c1_seq1_mafft.fasta   comp52492_c1_seq2.fasta         comp55182_c0_seq2_mafft.fasta
+comp26820_c0_seq1_mafft.fasta   comp41024_c0_seq1.fasta         comp44887_c0_seq1_mafft.fasta   comp48510_c0_seq6.fasta         comp52492_c1_seq2_mafft.fasta   comp55210_c1_seq1.fasta
+comp26820_c2_seq1.fasta         comp41024_c0_seq1_mafft.fasta   comp44921_c0_seq1.fasta         comp48510_c0_seq6_mafft.fasta   comp52663_c0_seq1.fasta         comp55210_c1_seq1_mafft.fasta
+comp26820_c2_seq1_mafft.fasta   comp41081_c0_seq1.fasta         comp44921_c0_seq1_mafft.fasta   comp48513_c0_seq2.fasta         comp52663_c0_seq1_mafft.fasta   comp55228_c0_seq8.fasta
+comp27108_c0_seq1.fasta         comp41081_c0_seq1_mafft.fasta   comp45038_c0_seq1.fasta         comp48513_c0_seq2_mafft.fasta   comp52686_c0_seq2.fasta         comp55228_c0_seq8_mafft.fasta
+comp27108_c0_seq1_mafft.fasta   comp41267_c0_seq2.fasta         comp45038_c0_seq1_mafft.fasta   comp48566_c2_seq1.fasta         comp52686_c0_seq2_mafft.fasta   comp55300_c0_seq3.fasta
+comp27375_c0_seq1.fasta         comp41267_c0_seq2_mafft.fasta   comp45125_c0_seq2.fasta         comp48566_c2_seq1_mafft.fasta   comp52711_c0_seq1.fasta         comp55300_c0_seq3_mafft.fasta
+comp27375_c0_seq1_mafft.fasta   comp41473_c0_seq1.fasta         comp45125_c0_seq2_mafft.fasta   comp48873_c0_seq1.fasta         comp52711_c0_seq1_mafft.fasta   comp55479_c0_seq1.fasta
+comp27897_c0_seq1.fasta         comp41473_c0_seq1_mafft.fasta   comp45170_c0_seq2.fasta         comp48873_c0_seq1_mafft.fasta   comp52736_c0_seq1.fasta         comp55479_c0_seq1_mafft.fasta
+comp27897_c0_seq1_mafft.fasta   comp41570_c0_seq1.fasta         comp45170_c0_seq2_mafft.fasta   comp49023_c0_seq1.fasta         comp52736_c0_seq1_mafft.fasta   comp55618_c0_seq2.fasta
+comp2794198_c0_seq1.fasta       comp41570_c0_seq1_mafft.fasta   comp45310_c0_seq2.fasta         comp49023_c0_seq1_mafft.fasta   comp52829_c0_seq3.fasta         comp55618_c0_seq2_mafft.fasta
+comp2794198_c0_seq1_mafft.fasta comp41589_c0_seq1.fasta         comp45310_c0_seq2_mafft.fasta   comp49083_c0_seq1.fasta         comp52829_c0_seq3_mafft.fasta   comp55651_c0_seq1.fasta
+comp28617_c0_seq1.fasta         comp41589_c0_seq1_mafft.fasta   comp45467_c0_seq1.fasta         comp49083_c0_seq1_mafft.fasta   comp52915_c0_seq2.fasta         comp55651_c0_seq1_mafft.fasta
+comp28617_c0_seq1_mafft.fasta   comp41658_c0_seq1.fasta         comp45467_c0_seq1_mafft.fasta   comp49109_c0_seq4.fasta         comp52915_c0_seq2_mafft.fasta   comp55820_c0_seq1.fasta
+comp28839_c0_seq1.fasta         comp41658_c0_seq1_mafft.fasta   comp45684_c0_seq1.fasta         comp49109_c0_seq4_mafft.fasta   comp52981_c1_seq1.fasta         comp55820_c0_seq1_mafft.fasta
+comp28839_c0_seq1_mafft.fasta   comp41758_c0_seq1.fasta         comp45684_c0_seq1_mafft.fasta   comp49294_c0_seq2.fasta         comp52981_c1_seq1_mafft.fasta   comp55854_c0_seq4.fasta
+comp28983_c0_seq1.fasta         comp41758_c0_seq1_mafft.fasta   comp45703_c0_seq1.fasta         comp49294_c0_seq2_mafft.fasta   comp53028_c0_seq2.fasta         comp55854_c0_seq4_mafft.fasta
+comp28983_c0_seq1_mafft.fasta   comp41859_c0_seq1.fasta         comp45703_c0_seq1_mafft.fasta   comp49369_c0_seq1.fasta         comp53028_c0_seq2_mafft.fasta   comp55873_c0_seq1.fasta
+comp30427_c0_seq1.fasta         comp41859_c0_seq1_mafft.fasta   comp45862_c0_seq1.fasta         comp49369_c0_seq1_mafft.fasta   comp53141_c1_seq1.fasta         comp55873_c0_seq1_mafft.fasta
+comp30427_c0_seq1_mafft.fasta   comp41904_c0_seq1.fasta         comp45862_c0_seq1_mafft.fasta   comp49386_c0_seq1.fasta         comp53141_c1_seq1_mafft.fasta   comp55885_c0_seq14.fasta
+comp30607_c0_seq1.fasta         comp41904_c0_seq1_mafft.fasta   comp45867_c0_seq1.fasta         comp49386_c0_seq1_mafft.fasta   comp53167_c1_seq1.fasta         comp55885_c0_seq14_mafft.fasta
+comp30607_c0_seq1_mafft.fasta   comp42092_c0_seq1.fasta         comp45867_c0_seq1_mafft.fasta   comp49395_c0_seq1.fasta         comp53167_c1_seq1_mafft.fasta   comp55899_c0_seq1.fasta
+comp3174_c0_seq1.fasta          comp42092_c0_seq1_mafft.fasta   comp45906_c0_seq1.fasta         comp49395_c0_seq1_mafft.fasta   comp53194_c2_seq3.fasta         comp55899_c0_seq1_mafft.fasta
+comp3174_c0_seq1_mafft.fasta    comp42265_c0_seq1.fasta         comp45906_c0_seq1_mafft.fasta   comp49523_c1_seq1.fasta         comp53194_c2_seq3_mafft.fasta   comp56022_c2_seq1.fasta
+comp31767_c0_seq1.fasta         comp42265_c0_seq1_mafft.fasta   comp45994_c1_seq1.fasta         comp49523_c1_seq1_mafft.fasta   comp53216_c0_seq2.fasta         comp56022_c2_seq1_mafft.fasta
+comp31767_c0_seq1_mafft.fasta   comp42274_c0_seq1.fasta         comp45994_c1_seq1_mafft.fasta   comp49588_c0_seq1.fasta         comp53216_c0_seq2_mafft.fasta   comp56134_c0_seq6.fasta
+comp31780_c0_seq1.fasta         comp42274_c0_seq1_mafft.fasta   comp46025_c0_seq1.fasta         comp49588_c0_seq1_mafft.fasta   comp53258_c0_seq3.fasta         comp56134_c0_seq6_mafft.fasta
+comp31780_c0_seq1_mafft.fasta   comp42358_c0_seq1.fasta         comp46025_c0_seq1_mafft.fasta   comp49673_c0_seq1.fasta         comp53258_c0_seq3_mafft.fasta   comp56192_c1_seq2.fasta
+comp32261_c0_seq1.fasta         comp42358_c0_seq1_mafft.fasta   comp46036_c0_seq1.fasta         comp49673_c0_seq1_mafft.fasta   comp53279_c0_seq1.fasta         comp56192_c1_seq2_mafft.fasta
+comp32261_c0_seq1_mafft.fasta   comp42391_c0_seq1.fasta         comp46036_c0_seq1_mafft.fasta   comp49874_c0_seq1.fasta         comp53279_c0_seq1_mafft.fasta   comp56254_c1_seq2.fasta
+comp338739_c0_seq1.fasta        comp42391_c0_seq1_mafft.fasta   comp46048_c0_seq1.fasta         comp49874_c0_seq1_mafft.fasta   comp53279_c1_seq1.fasta         comp56254_c1_seq2_mafft.fasta
+comp338739_c0_seq1_mafft.fasta  comp42471_c0_seq1.fasta         comp46048_c0_seq1_mafft.fasta   comp49929_c0_seq1.fasta         comp53279_c1_seq1_mafft.fasta   comp56258_c0_seq1.fasta
+comp33962_c0_seq1.fasta         comp42471_c0_seq1_mafft.fasta   comp46121_c0_seq1.fasta         comp49929_c0_seq1_mafft.fasta   comp53340_c0_seq1.fasta         comp56258_c0_seq1_mafft.fasta
+comp33962_c0_seq1_mafft.fasta   comp42557_c0_seq1.fasta         comp46121_c0_seq1_mafft.fasta   comp50161_c0_seq1.fasta         comp53340_c0_seq1_mafft.fasta   comp56397_c0_seq2.fasta
+comp35561_c0_seq1.fasta         comp42557_c0_seq1_mafft.fasta   comp46261_c0_seq1.fasta         comp50161_c0_seq1_mafft.fasta   comp53352_c0_seq1.fasta         comp56397_c0_seq2_mafft.fasta
+comp35561_c0_seq1_mafft.fasta   comp42703_c0_seq1.fasta         comp46261_c0_seq1_mafft.fasta   comp50170_c0_seq12.fasta        comp53352_c0_seq1_mafft.fasta   comp56474_c0_seq2.fasta
+comp35797_c0_seq1.fasta         comp42703_c0_seq1_mafft.fasta   comp46270_c0_seq1.fasta         comp50170_c0_seq12_mafft.fasta  comp53451_c0_seq1.fasta         comp56474_c0_seq2_mafft.fasta
+comp35797_c0_seq1_mafft.fasta   comp42706_c0_seq1.fasta         comp46270_c0_seq1_mafft.fasta   comp50204_c0_seq1.fasta         comp53451_c0_seq1_mafft.fasta   comp56606_c0_seq4.fasta
+comp36008_c0_seq1.fasta         comp42706_c0_seq1_mafft.fasta   comp46275_c0_seq1.fasta         comp50204_c0_seq1_mafft.fasta   comp53459_c0_seq1.fasta         comp56606_c0_seq4_mafft.fasta
+comp36008_c0_seq1_mafft.fasta   comp42737_c0_seq1.fasta         comp46275_c0_seq1_mafft.fasta   comp50371_c0_seq3.fasta         comp53459_c0_seq1_mafft.fasta   comp56609_c0_seq1.fasta
+comp36444_c1_seq1.fasta         comp42737_c0_seq1_mafft.fasta   comp46303_c0_seq1.fasta         comp50371_c0_seq3_mafft.fasta   comp53516_c0_seq1.fasta         comp56609_c0_seq1_mafft.fasta
+comp36444_c1_seq1_mafft.fasta   comp43079_c0_seq1.fasta         comp46303_c0_seq1_mafft.fasta   comp50626_c0_seq4.fasta         comp53516_c0_seq1_mafft.fasta   comp56733_c0_seq5.fasta
+comp36654_c0_seq1.fasta         comp43079_c0_seq1_mafft.fasta   comp46343_c0_seq1.fasta         comp50626_c0_seq4_mafft.fasta   comp53540_c0_seq3.fasta         comp56733_c0_seq5_mafft.fasta
+comp36654_c0_seq1_mafft.fasta   comp43262_c0_seq1.fasta         comp46343_c0_seq1_mafft.fasta   comp50657_c0_seq1.fasta         comp53540_c0_seq3_mafft.fasta   comp56747_c1_seq2.fasta
+comp36697_c0_seq1.fasta         comp43262_c0_seq1_mafft.fasta   comp46351_c1_seq1.fasta         comp50657_c0_seq1_mafft.fasta   comp53595_c0_seq20.fasta        comp56747_c1_seq2_mafft.fasta
+comp36697_c0_seq1_mafft.fasta   comp43290_c0_seq1.fasta         comp46351_c1_seq1_mafft.fasta   comp50758_c0_seq4.fasta         comp53595_c0_seq20_mafft.fasta  comp56887_c0_seq1.fasta
+comp36900_c2_seq1.fasta         comp43290_c0_seq1_mafft.fasta   comp46465_c0_seq1.fasta         comp50758_c0_seq4_mafft.fasta   comp53604_c0_seq2.fasta         comp56887_c0_seq1_mafft.fasta
+comp36900_c2_seq1_mafft.fasta   comp43316_c0_seq1.fasta         comp46465_c0_seq1_mafft.fasta   comp50780_c0_seq2.fasta         comp53604_c0_seq2_mafft.fasta   comp56896_c0_seq1.fasta
+comp37141_c0_seq1.fasta         comp43316_c0_seq1_mafft.fasta   comp46465_c2_seq1.fasta         comp50780_c0_seq2_mafft.fasta   comp53688_c0_seq1.fasta         comp56896_c0_seq1_mafft.fasta
+comp37141_c0_seq1_mafft.fasta   comp43396_c0_seq1.fasta         comp46465_c2_seq1_mafft.fasta   comp51015_c0_seq1.fasta         comp53688_c0_seq1_mafft.fasta   comp56903_c0_seq3.fasta
+comp37145_c0_seq1.fasta         comp43396_c0_seq1_mafft.fasta   comp46472_c0_seq1.fasta         comp51015_c0_seq1_mafft.fasta   comp53769_c0_seq1.fasta         comp56903_c0_seq3_mafft.fasta
+comp37145_c0_seq1_mafft.fasta   comp43405_c0_seq1.fasta         comp46472_c0_seq1_mafft.fasta   comp51076_c0_seq1.fasta         comp53769_c0_seq1_mafft.fasta   comp56968_c0_seq5.fasta
+comp37261_c0_seq1.fasta         comp43405_c0_seq1_mafft.fasta   comp46489_c0_seq1.fasta         comp51076_c0_seq1_mafft.fasta   comp53857_c0_seq1.fasta         comp56968_c0_seq5_mafft.fasta
+comp37261_c0_seq1_mafft.fasta   comp43423_c0_seq1.fasta         comp46489_c0_seq1_mafft.fasta   comp51091_c2_seq5.fasta         comp53857_c0_seq1_mafft.fasta   comp710440_c0_seq1.fasta
+comp37293_c0_seq1.fasta         comp43423_c0_seq1_mafft.fasta   comp46497_c0_seq2.fasta         comp51091_c2_seq5_mafft.fasta   comp53868_c0_seq1.fasta         comp710440_c0_seq1_mafft.fasta
+comp37293_c0_seq1_mafft.fasta   comp43426_c1_seq1.fasta         comp46497_c0_seq2_mafft.fasta   comp51118_c0_seq1.fasta         comp53868_c0_seq1_mafft.fasta   comp816108_c0_seq1.fasta
+comp37377_c0_seq1.fasta         comp43426_c1_seq1_mafft.fasta   comp46551_c0_seq1.fasta         comp51118_c0_seq1_mafft.fasta   comp53881_c0_seq1.fasta         comp816108_c0_seq1_mafft.fasta
+comp37377_c0_seq1_mafft.fasta   comp43486_c0_seq1.fasta         comp46551_c0_seq1_mafft.fasta   comp51236_c3_seq1.fasta         comp53881_c0_seq1_mafft.fasta   comp826804_c0_seq1.fasta
+comp37644_c0_seq1.fasta         comp43486_c0_seq1_mafft.fasta   comp46553_c1_seq1.fasta         comp51236_c3_seq1_mafft.fasta   comp53904_c0_seq1.fasta         comp826804_c0_seq1_mafft.fasta
+comp37644_c0_seq1_mafft.fasta   comp43766_c1_seq1.fasta         comp46553_c1_seq1_mafft.fasta   comp51262_c0_seq4.fasta         comp53904_c0_seq1_mafft.fasta   locus_list
+comp38281_c0_seq1.fasta         comp43766_c1_seq1_mafft.fasta   comp46693_c0_seq1.fasta         comp51262_c0_seq4_mafft.fasta   comp53952_c0_seq2.fasta         tidy_mafft.sh
+comp38281_c0_seq1_mafft.fasta   comp43766_c2_seq1.fasta         comp46693_c0_seq1_mafft.fasta   comp51289_c0_seq1.fasta         comp53952_c0_seq2_mafft.fasta
+comp38882_c0_seq1.fasta         comp43766_c2_seq1_mafft.fasta   comp46726_c0_seq2.fasta         comp51289_c0_seq1_mafft.fasta   comp53978_c0_seq1.fasta
+comp38882_c0_seq1_mafft.fasta   comp43779_c0_seq1.fasta         comp46726_c0_seq2_mafft.fasta   comp51314_c1_seq5.fasta         comp53978_c0_seq1_mafft.fasta
+comp39051_c0_seq2.fasta         comp43779_c0_seq1_mafft.fasta   comp46777_c0_seq1.fasta         comp51314_c1_seq5_mafft.fasta   comp54031_c0_seq1.fasta
+</pre></div>
+</div>
+<p>You can download some of the alignments to yout local machine and look at them using a graphical user interface software (e.g. Aliview <a class="reference external" href="https://ormbunkar.se/aliview/">https://ormbunkar.se/aliview/</a>). You will see that many regions of the alignments have gaps. We will use the software <a class="reference external" href="http://trimal.cgenomics.org">trimAl</a> to clip those gappy regions. trimAl is a tool for the automated removal of spurious sequences or poorly aligned regions from a multiple sequence alignment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">read</span> f <span class="p">;</span> <span class="k">do</span> trimal -in <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span>_mafft.fasta -out <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span>_strict_trimmed.fasta -strict -fasta <span class="p">;</span> <span class="k">done</span> &lt; locus_list
+</pre></div>
+</div>
+<p>We will now use <a class="reference external" href="https://github.com/marekborowiec/AMAS/">AMAS</a> to get a summary statistics of each alignment and to concatenate our <code class="docutils literal notranslate"><span class="pre">${locus}_strict_trimmed.fasta</span></code> loci:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python amas.py summary -i *_strict_trimmed.fasta -f fasta -d dna -o all_loci_summary.txt
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python amas.py concat -i *_strict_trimmed.fasta -u fasta -f fasta -d dna -t all_loci.fasta -p all_loci_partitions.txt
+</pre></div>
+</div>
+<p>Our final alignment can now be used as an input to infer a phylogeny.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="phylogeny.html" class="btn btn-neutral float-right" title="Inferring a phylogeny" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mapping.html" class="btn btn-neutral float-left" title="Mapping reads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021 | Bioinformatics | RBGE.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

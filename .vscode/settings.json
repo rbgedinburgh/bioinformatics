@@ -1,0 +1,4 @@
+{
+    "restructuredtext.preview.scrollEditorWithPreview": false,
+    "restructuredtext.confPath": "${workspaceFolder}/source"
+}

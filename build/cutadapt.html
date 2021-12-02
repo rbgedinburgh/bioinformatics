@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Cutadapt &mdash; RBGE&#39;s pipelines  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+  <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mapping reads" href="mapping.html" />
+    <link rel="prev" title="Trimmomatic" href="trimmomatic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RBGE's pipelines
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wheretostore.html">Where do I store my data?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wheretorun.html">Where do I run my analysis?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installsoftware.html">Installing Software</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quality of the raw reads:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rawreads.html">Raw reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fastqc.html">FastQC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trimmomatic.html">Trimmomatic</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cutadapt</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Target Capture:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">Mapping reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aligning.html">Alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phylogeny.html">Inferring a phylogeny</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RBGE's pipelines</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Cutadapt</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/cutadapt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cutadapt">
+<h1>Cutadapt<a class="headerlink" href="#cutadapt" title="Permalink to this headline">¶</a></h1>
+<p>We can use <a class="reference external" href="https://cutadapt.readthedocs.io/en/stable/">Cutadapt</a> to trim further our output and the script <code class="docutils literal notranslate"><span class="pre">more_tidying.sh</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember we are following the Hyb_baits_pipeline from the paper <a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fpls.2015.00710/full">Nicholls et al. 2015</a>, with scripts available on github: <a class="reference external" href="https://github.com/ckidner/Targeted_enrichment">https://github.com/ckidner/Targeted_enrichment</a>.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+You can see the content of the script here:<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/bash -x</span>
+<span class="c1"># to trim the trimmomatic output one more time</span>
+<span class="c1"># Needs ck_empties.sh and ck_remove.sh</span>
+<span class="c1">#Catherine Kidner 3 Nov 2014</span>
+
+
+<span class="nb">echo</span> <span class="s2">&quot;Hello world&quot;</span>
+
+<span class="nv">acc</span><span class="o">=</span><span class="nv">$1</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;You&#39;re working on accession </span><span class="nv">$1</span><span class="s2">&quot;</span>
+
+
+<span class="nv">fwd_p</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_forward_paired.fq.gz
+<span class="nv">rev_p</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_reverse_paired.fq.gz
+<span class="nv">fwd_un_p</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_forward_unpaired.fq.gz
+<span class="nv">rev_un_p</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_reverse_unpaired.fq.gz
+
+<span class="nv">fwd_p_done</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_trimmed_1.fastq
+<span class="nv">rev_p_done</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_trimmed_2.fastq
+<span class="nv">fwd_u_done</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_trimmed_1u.fastq
+<span class="nv">rev_u_done</span><span class="o">=</span><span class="si">${</span><span class="nv">acc</span><span class="si">}</span>_trimmed_2u.fastq
+
+cutadapt -a AGATCGGAAGAGC <span class="nv">$fwd_p</span> &gt; <span class="nv">$fwd_p_done</span> <span class="m">2</span>&gt;&gt; cut_out
+cutadapt -a AGATCGGAAGAGC <span class="nv">$rev_p</span> &gt; <span class="nv">$rev_p_done</span> <span class="m">2</span>&gt;&gt; cut_out
+cutadapt -a AGATCGGAAGAGC <span class="nv">$fwd_un_p</span> &gt; <span class="nv">$fwd_u_done</span> <span class="m">2</span>&gt;&gt; cut_out
+cutadapt -a AGATCGGAAGAGC <span class="nv">$rev_un_p</span> &gt; <span class="nv">$rev_u_done</span> <span class="m">2</span>&gt;&gt; cut_out
+./ck_empties_fastq.sh <span class="nv">$acc</span>
+./ck_remove_fastq.sh <span class="nv">$acc</span>
+
+
+<span class="nb">exit</span> <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+</details><p>You can see in the top commmented section of the script that it requires two other scripts: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Needs</span> <span class="pre">ck_empties.sh</span> <span class="pre">and</span> <span class="pre">ck_remove.sh</span></code>, also available in GitHub, so make sure you have the correct path for <code class="docutils literal notranslate"><span class="pre">ck_empties.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">ck_remove.sh</span></code> the scripts inside <code class="docutils literal notranslate"><span class="pre">more_tidying.sh</span></code>. We will use <code class="docutils literal notranslate"><span class="pre">more_tidying.sh</span></code> in a loop with out trimmomatic output as input:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">read</span> f <span class="p">;</span> <span class="k">do</span> ./more_tidying.sh <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">done</span> &lt; acc
+</pre></div>
+</div>
+<p>This script will produce four outputs ending in <code class="docutils literal notranslate"><span class="pre">_trimmed_1.fastq</span></code> (forward paired), <code class="docutils literal notranslate"><span class="pre">_trimmed_2.fastq</span></code> (reverse paired), <code class="docutils literal notranslate"><span class="pre">_trimmed_1u.fastq</span></code> (forward unpaired) and <code class="docutils literal notranslate"><span class="pre">_trimmed_2u.fastq</span></code> (reverse unpaired).</p>
+<p>Here is what we have in our folder now:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FG113                                 FG35_1.fastq.gz                       FGIntype_1_fastqc.zip                 KGD465_2_fastqc.html                  zygia917_1.fastq.gz
+FG113.empties                         FG35_1_fastqc.html                    FGIntype_2.fastq.gz                   KGD465_2_fastqc.zip                   zygia917_1_fastqc.html
+FG113_1.fastq.gz                      FG35_1_fastqc.zip                     FGIntype_2_fastqc.html                KGD465_forward_paired.fq.gz           zygia917_1_fastqc.zip
+FG113_1_fastqc.html                   FG35_2.fastq.gz                       FGIntype_2_fastqc.zip                 KGD465_forward_paired_fastqc.html     zygia917_2.fastq.gz
+FG113_1_fastqc.zip                    FG35_2_fastqc.html                    FGIntype_forward_paired.fq.gz         KGD465_forward_paired_fastqc.zip      zygia917_2_fastqc.html
+FG113_2.fastq.gz                      FG35_2_fastqc.zip                     FGIntype_forward_paired_fastqc.html   KGD465_forward_unpaired.fq.gz         zygia917_2_fastqc.zip
+FG113_2_fastqc.html                   FG35_forward_paired.fq.gz             FGIntype_forward_paired_fastqc.zip    KGD465_forward_unpaired_fastqc.html   zygia917_forward_paired.fq.gz
+FG113_2_fastqc.zip                    FG35_forward_paired_fastqc.html       FGIntype_forward_unpaired.fq.gz       KGD465_forward_unpaired_fastqc.zip    zygia917_forward_paired_fastqc.html
+FG113_forward_paired.fq.gz            FG35_forward_paired_fastqc.zip        FGIntype_forward_unpaired_fastqc.html KGD465_reverse_paired.fq.gz           zygia917_forward_paired_fastqc.zip
+FG113_forward_paired_fastqc.html      FG35_forward_unpaired.fq.gz           FGIntype_forward_unpaired_fastqc.zip  KGD465_reverse_paired_fastqc.html     zygia917_forward_unpaired.fq.gz
+FG113_forward_paired_fastqc.zip       FG35_forward_unpaired_fastqc.html     FGIntype_reverse_paired.fq.gz         KGD465_reverse_paired_fastqc.zip      zygia917_forward_unpaired_fastqc.html
+FG113_forward_unpaired.fq.gz          FG35_forward_unpaired_fastqc.zip      FGIntype_reverse_paired_fastqc.html   KGD465_reverse_unpaired.fq.gz         zygia917_forward_unpaired_fastqc.zip
+FG113_forward_unpaired_fastqc.html    FG35_reverse_paired.fq.gz             FGIntype_reverse_paired_fastqc.zip    KGD465_reverse_unpaired_fastqc.html   zygia917_reverse_paired.fq.gz
+FG113_forward_unpaired_fastqc.zip     FG35_reverse_paired_fastqc.html       FGIntype_reverse_unpaired.fq.gz       KGD465_reverse_unpaired_fastqc.zip    zygia917_reverse_paired_fastqc.html
+FG113_reverse_paired.fq.gz            FG35_reverse_paired_fastqc.zip        FGIntype_reverse_unpaired_fastqc.html KGD465_trimmed_1.fastq                zygia917_reverse_paired_fastqc.zip
+FG113_reverse_paired_fastqc.html      FG35_reverse_unpaired.fq.gz           FGIntype_reverse_unpaired_fastqc.zip  KGD465_trimmed_1.fastq.gz             zygia917_reverse_unpaired.fq.gz
+FG113_reverse_paired_fastqc.zip       FG35_reverse_unpaired_fastqc.html     FGIntype_trimmed_1.fastq              KGD465_trimmed_1u.fastq               zygia917_reverse_unpaired_fastqc.html
+FG113_reverse_unpaired.fq.gz          FG35_reverse_unpaired_fastqc.zip      FGIntype_trimmed_1.fastq.gz           KGD465_trimmed_2.fastq                zygia917_reverse_unpaired_fastqc.zip
+FG113_reverse_unpaired_fastqc.html    FG35_trimmed_1.fastq                  FGIntype_trimmed_1u.fastq             KGD465_trimmed_2.fastq.gz             zygia917_trimmed_1.fastq
+FG113_reverse_unpaired_fastqc.zip     FG35_trimmed_1.fastq.gz               FGIntype_trimmed_2.fastq              KGD465_trimmed_2u.fastq               zygia917_trimmed_1.fastq.gz
+FG113_trimmed_1.fastq                 FG35_trimmed_1u.fastq                 FGIntype_trimmed_2.fastq.gz           acc                                   zygia917_trimmed_1u.fastq
+FG113_trimmed_1.fastq.gz              FG35_trimmed_2.fastq                  FGIntype_trimmed_2u.fastq             cut_out                               zygia917_trimmed_2.fastq
+FG113_trimmed_1u.fastq                FG35_trimmed_2.fastq.gz               KGD465                                fastqcfiles                           zygia917_trimmed_2.fastq.gz
+FG113_trimmed_2.fastq                 FG35_trimmed_2u.fastq                 KGD465.empties                        fastqctrimfile                        zygia917_trimmed_2u.fastq
+FG113_trimmed_2.fastq.gz              FGIntype                              KGD465_1.fastq.gz                     more_tidying.sh
+FG113_trimmed_2u.fastq                FGIntype.empties                      KGD465_1_fastqc.html                  renaming.sh
+FG35                                  FGIntype_1.fastq.gz                   KGD465_1_fastqc.zip                   zygia917
+FG35.empties                          FGIntype_1_fastqc.html                KGD465_2.fastq.gz                     zygia917.empties
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="mapping.html" class="btn btn-neutral float-right" title="Mapping reads" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="trimmomatic.html" class="btn btn-neutral float-left" title="Trimmomatic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021 | Bioinformatics | RBGE.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
