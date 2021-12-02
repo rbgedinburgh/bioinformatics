@@ -18,4 +18,4 @@ If you prefer to run your analysis in a cluster, here are instruction on how to 
 Which one should I use? 
 ------------------------
 
-So what is the difference between a server and a cluster? In simple terms, a cluster is a combination of multiple servers that are managed together. In general, a cluster will be more powerful, i.e., you can run your analysis faster. However, clusters can get busy and if you have a big job to run, you might have to wait until the resource is available (enter the queue). 
+So what is the difference between a server and a cluster? In simple terms, a cluster is a combination of multiple servers that are managed together. In general, a cluster will be more powerful, i.e., you can run your analysis faster. However, clusters can get busy and if you have a big job to run, you might have to wait until the resource is available (enter the queue).
