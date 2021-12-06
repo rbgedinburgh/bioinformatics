@@ -18,7 +18,7 @@ Here we have a list of five folders that came from the sequencing facility. The 
     140428_M01145_0124_000000000-A78G3_1_IL-TP-005_1.sanfastq.gz
     140428_M01145_0124_000000000-A78G3_1_IL-TP-005_2.sanfastq.gz
 
-The files have complicated names. Let's change their names to more meaniful ones (i.e., the name of the accesions, which is the same name of their folders): 
+The files have complicated names. Let's change their names to more meaningful ones (i.e., the name of the accessions, which is the same name of their folders): 
 
 Let's start by making a list of folders we have in our working directory:
 
@@ -165,7 +165,7 @@ Now let's see what we have in our working directory:
     FG113_2.fastq.gz    FGIntype_1.fastq.gz acc                 zygia917_2.fastq.gz
     FG35                FGIntype_2.fastq.gz FG35_1.fastq.gz     KGD465              renaming.sh
 
-The raw reads are in ``fastq.gz`` format. ``fastq`` is a text-based format for storing both a biological sequence (usually nucleotide sequence) and its corresponding quality scores. The ``gz`` means the files are compressed. We can peek into compressed files with ``zless``. Let's look into the foward reads (forward reads end with ``_1`` in our case) of the accession FG113.
+The raw reads are in ``fastq.gz`` format. ``fastq`` is a text-based format for storing both a biological sequence (usually nucleotide sequence) and its corresponding quality scores. The ``gz`` means the files are compressed. We can peek into compressed files with ``zless``. Let's look into the forward reads (forward reads end with ``_1`` in our case) of the accession FG113.
 
 .. code-block:: bash
 

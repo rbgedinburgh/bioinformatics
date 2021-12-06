@@ -190,7 +190,7 @@
 140428_M01145_0124_000000000-A78G3_1_IL-TP-005_2.sanfastq.gz
 </pre></div>
 </div>
-<p>The files have complicated names. Let’s change their names to more meaniful ones (i.e., the name of the accesions, which is the same name of their folders):</p>
+<p>The files have complicated names. Let’s change their names to more meaningful ones (i.e., the name of the accessions, which is the same name of their folders):</p>
 <p>Let’s start by making a list of folders we have in our working directory:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -type d
 </pre></div>
@@ -324,7 +324,7 @@ FG113_2.fastq.gz    FGIntype_1.fastq.gz acc                 zygia917_2.fastq.gz
 FG35                FGIntype_2.fastq.gz FG35_1.fastq.gz     KGD465              renaming.sh
 </pre></div>
 </div>
-<p>The raw reads are in <code class="docutils literal notranslate"><span class="pre">fastq.gz</span></code> format. <code class="docutils literal notranslate"><span class="pre">fastq</span></code> is a text-based format for storing both a biological sequence (usually nucleotide sequence) and its corresponding quality scores. The <code class="docutils literal notranslate"><span class="pre">gz</span></code> means the files are compressed. We can peek into compressed files with <code class="docutils literal notranslate"><span class="pre">zless</span></code>. Let’s look into the foward reads (forward reads end with <code class="docutils literal notranslate"><span class="pre">_1</span></code> in our case) of the accession FG113.</p>
+<p>The raw reads are in <code class="docutils literal notranslate"><span class="pre">fastq.gz</span></code> format. <code class="docutils literal notranslate"><span class="pre">fastq</span></code> is a text-based format for storing both a biological sequence (usually nucleotide sequence) and its corresponding quality scores. The <code class="docutils literal notranslate"><span class="pre">gz</span></code> means the files are compressed. We can peek into compressed files with <code class="docutils literal notranslate"><span class="pre">zless</span></code>. Let’s look into the forward reads (forward reads end with <code class="docutils literal notranslate"><span class="pre">_1</span></code> in our case) of the accession FG113.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zless FG113_1.fastq.gz
 </pre></div>
 </div>

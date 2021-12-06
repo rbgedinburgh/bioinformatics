@@ -44,7 +44,7 @@ We can use `Cutadapt <https://cutadapt.readthedocs.io/en/stable/>`__ to trim fur
         exit 0
 
 
-You can see in the top commmented section of the script that it requires two other scripts: ``# Needs ck_empties.sh and ck_remove.sh``, also available in GitHub, so make sure you have the correct path for ``ck_empties.sh`` and ``ck_remove.sh`` the scripts inside ``more_tidying.sh``. We will use ``more_tidying.sh`` in a loop with out trimmomatic output as input:
+You can see in the top commented section of the script that it requires two other scripts: ``# Needs ck_empties.sh and ck_remove.sh``, also available in GitHub, so make sure you have the correct path for ``ck_empties.sh`` and ``ck_remove.sh`` the scripts inside ``more_tidying.sh``. We will use ``more_tidying.sh`` in a loop with out trimmomatic output as input:
 
 .. code-block:: bash
 
