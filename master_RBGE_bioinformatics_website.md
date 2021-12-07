@@ -24,9 +24,9 @@ With the answers:
 
 - Project name: RBGE's pipelines
 
-- Author name(s): Bioinformatics | RBGE
+- Author name(s): Flavia Fonseca Pezzini
 
-- Project release: 2021
+- Project release: 2021 Bioinformatics | Royal Botanic Garden Edinburgh
 
 - Project language: Leave it empty (the default, English).
 

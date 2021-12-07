@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "RBGE's pipelines"
-copyright = '2021 | Bioinformatics | RBGE'
-author = 'Bioinformatics | RBGE'
+project = "Bioinformatics | RBGE"
+copyright = '2021 | Bioinformatics | Royal Botanic Garden Edinburgh'
+author = 'Flavia Fonseca Pezzini'
 
 
 # -- General configuration ---------------------------------------------------
@@ -27,7 +27,7 @@ author = 'Bioinformatics | RBGE'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx_panels']
+extensions = ['sphinx_panels', 'myst_parser']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
