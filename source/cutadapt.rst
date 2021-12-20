@@ -6,7 +6,8 @@ We can use `Cutadapt <https://cutadapt.readthedocs.io/en/stable/>`__ to trim fur
 .. note:: Remember we are following the Hyb_baits_pipeline from the paper `Nicholls et al. 2015 <https://www.frontiersin.org/articles/10.3389/fpls.2015.00710/full>`_, with scripts available on github: `<https://github.com/ckidner/Targeted_enrichment>`_.
 
 
-.. dropdown:: You can see the content of the script here: 
+.. dropdown:: You can see the content of the script more_tidying.sh here: 
+    :title: bg-info text-white
 
     .. code-block:: bash
 

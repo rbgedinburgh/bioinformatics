@@ -74,9 +74,8 @@ Take a look at ``acc``:
 We will now use the script ``renaming.sh`` to rename our raw read and move them to the folder we are working on.
 
 
-.. dropdown:: You can see the script in this dropdown menu. The file is also in the GitHub repository:
-    :container: + shadow
-    :title: text-info 
+.. dropdown:: You can see the content of the script renaming.sh in this dropdown menu:
+    :title: bg-info text-white
     
         .. code-block:: bash
 
@@ -112,6 +111,7 @@ If you have many samples, this task can take a while. Let's use the script ``ren
     In this loop, the ``acc`` is the input file that will be read one line at a time, and that value replaces the variable ``$f``. So if our ``acc`` files has five lines, the command ``./renaming.sh`` will be executed five times, each time replacing ``$f`` with a line from our input file ``acc``. 
 
 .. dropdown:: This is what you should see printed in your terminal:
+    :title: bg-info text-white
 
     .. code-block:: bash
     

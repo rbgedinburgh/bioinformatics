@@ -3,14 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-RBGE core pipelines's documentation
-=================================================
+RBGE's bioinformatics and data management 
+=============================================
 
-Here you will find tutorials of the most common analyses used in RBGE.
+Here you will find information about genomic data management and tutorials of the most common bioinformatics pipelines used at the Royal Botanic Garden Edinburgh, RBGE.
+
 
 .. toctree::
    :maxdepth: 1
-   :caption: Getting started:
+   :caption: Wet Laboratory:
+
+   wet_labbook_template
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Data management:
 
    wheretostore
    wheretorun
@@ -32,6 +39,12 @@ Here you will find tutorials of the most common analyses used in RBGE.
    mapping
    aligning
    phylogeny
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contact:
+   
+   contact
 
 .. toctree::
    :maxdepth: 1

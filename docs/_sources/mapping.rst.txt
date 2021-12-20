@@ -30,6 +30,7 @@ This is the sequence of our baits. It has the bait name (e.g. ``>comp39600_c0_se
 So we have 264 *loci* in our bait set. To map our trimmed reads to the bait set we will use the script ``bam_me.sh``. 
 
 .. dropdown:: bam_me.sh
+      :title: bg-info text-white
 
       .. code-block:: bash
 
@@ -68,6 +69,7 @@ So we have 264 *loci* in our bait set. To map our trimmed reads to the bait set 
 We can see that this script uses two different software: Bowtie2 and Samtools.  
 
 .. dropdown:: Bowtie2 - extracts from `<http://bowtie-bio.sourceforge.net/bowtie2/index.shtml>`_:
+      :title: bg-info text-white
 
       Here you can see extracts from the Bowtie 2 manual, available at `<http://bowtie-bio.sourceforge.net/bowtie2/index.shtml>`_.
 
@@ -104,6 +106,7 @@ We can see that this script uses two different software: Bowtie2 and Samtools.
       from: https://github.com/BenLangmead/bowtie2/blob/master/MANUAL
 
 .. dropdown:: Samtools: extracts from `<http://www.htslib.org>`_
+      :title: bg-info text-white
 
       Here you can see extracts from Samtools manual, available here `<http://www.htslib.org>`_.
 
@@ -211,11 +214,15 @@ The file ``{$acc}_bowtie_output`` shows the aligment summary for the bowtie2 ste
 
       awk 'FNR==1{print "::::\n"FILENAME"\n::::"}1' *_bowtie_output
 
-You can also visually explore the bam files using the software `Tablet <https://ics.hutton.ac.uk/tablet/>`_. You will need the ``.bam`` and the index ``.bai`` files, that were already generated with the ``bam_me.sh`` script.
+You can also visually explore the bam files using the software `Tablet <https://ics.hutton.ac.uk/tablet/>`_. You will need the ``.bam`` and the index ``.bai`` files, which were generated with the ``bam_me.sh`` script. Below is an example of what it looks like. It is a good idea to explore the ``.bam`` files to check how the reads mapped back to the baits.
+
+.. image:: ../images/bam_file_example.png
+      :alt: This is an example of a ``.bam`` file viewed with Tablet.
 
 One of the outputs this script produces is the vcf file. VCF is the standard file format for storing variation data.
 
 .. dropdown:: What are VCF files
+      :title: bg-info text-white
 
       The Variant Call Format (VCF) specifies the format of a text file used in bioinformatics for storing gene sequence variations. The format has been developed with the advent of large-scale genotyping and DNA sequencing projects, such as the 1000 Genomes Project. Existing formats for genetic data such as General feature format (GFF) stored all of the genetic data, much of which is redundant because it will be shared across the genomes. By using the variant call format only the variations need to be stored along with a reference genome. More info: 
       `<http://www.internationalgenome.org/wiki/Analysis/vcf4.0>`_ and 
@@ -225,6 +232,7 @@ One of the outputs this script produces is the vcf file. VCF is the standard fil
 We will use the script ``clean_vcf.sh`` to edit the vcf files to remove indels and calls with quality less than 36 and then output the consensus fasta. Note that we will need the perl script ``vcfutils_dasta.pl`` in the folder we are working on. 
 
 .. dropdown:: clean_vcf.sh
+      :title: bg-info text-white
 
       .. code-block:: bash
 
@@ -275,8 +283,106 @@ Let's create the folder and lists:
 
 And then run:
 
-.. code-block:: python
+.. code-block:: bash
 
       python /path/to/your/Targeted_enrichment/Switch_multifastas.py
 
+.. dropdown:: Switch_multifastas.py
+      :title: bg-info text-white
+      
+      .. code-block:: python
+
+            '''take a set of multifastas and re-order as by filename a set of multifastas
+            For dealing with hyb_baits bowtie to fasta outputs
+            needs alist f the fasta file names and a list of the loci (as in the fasta_files)
+            set at the default - can change to querry for list names
+            needs an output folder called By_locus'''
+
+
+            def fasta_dict(fastafile):
+                  file = open(fastafile)
+                  name2seq = {}
+
+                  for line in file:
+                        if line.startswith(">"):
+                              seq = ''
+                              split_line = line.split(' ')
+                              name = split_line[0]
+                              name = name.rstrip()
+                              name = name.lstrip('>')
+                        else:
+                              seq = seq + str(line)
+                              seq = seq.rstrip()
+
+                        name2seq[name] = seq
+                  
+                  return name2seq
+
+            print ("Hello world")
+
+            fastafile_list = "fasta_files"
+            locus_list_file = "locus_list"
+
+            #fastafile_list = input("Which list of fasta files (full file name please)?\n")
+            #locus_list_file = input("Which file for names of loci?\n")
+
+            #open files for each locus (for reading and writting) ready to feed in the fastas
+
+            if locus_list_file != None:
+                  locus_list = open(locus_list_file)
+                  for name in locus_list:
+                        name = name.rstrip("\n")
+                        out_file_name = name + ".fasta"
+
+                        outfile = open(out_file_name, "w")
+                        outfile.close()
+
+            # go through each fasta file pulling out the match to each locus and putting into the file
+
+            if fastafile_list != None:
+                  fastafiles = open(fastafile_list)
+                  for file_name in fastafiles: 
+                        file_name = file_name.rstrip("\n")
+                        accession = file_name.rstrip(".fna")
+
+                        #Make a dict of that fasta file
+
+                        ifasta_dict = fasta_dict(file_name)
+
+                        keep_lines_processed = 0
+                        keep_seq_found = 0
+                        missing_list = []
+
+                        if locus_list_file != None:
+                              locus_list = open(locus_list_file)
+                              #for a locus pull out the hit and append to the correct file
+                              for name in locus_list:
+                                    name = name.rstrip("\n")
+                                    found_fasta = ">" +  accession + "_" + name + "\n"
+                                    keep_lines_processed += 1
+
+
+                                    fasta_seq = ifasta_dict.get(name, "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN")
+                                    if name in ifasta_dict.keys():
+                                          keep_seq_found +=1
+                                    else:
+                                          missing_list.append(name)
+
+                                    found_fasta = found_fasta + fasta_seq + "\n"
+                                    locus_file_to_write = "By_locus/" + name + ".fasta"
+                                    with open(locus_file_to_write, "a") as myfile:
+                                          myfile.write(found_fasta)
+
+
+
+                        print("Keep lines processed for " + file_name + "  = " + str(keep_lines_processed))
+                        print("Keep sequences found for " + file_name + " = " + str(keep_seq_found))
+                        print("Missing for " + file_name + " = " + str("\n".join(missing_list)))
+                  
+
+
+
+	
+			
+	
 We now have a folder callled ``By_locus`` with 264 fasta files ready to be aligned with `mafft <https://mafft.cbrc.jp/alignment/software/>`_. 

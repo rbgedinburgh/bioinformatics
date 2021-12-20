@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Cutadapt &mdash; RBGE&#39;s pipelines  documentation</title>
+  <title>Cutadapt &mdash; Bioinformatics | RBGE  documentation</title>
   
 
   
@@ -59,7 +59,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> RBGE's pipelines
+            <a href="index.html" class="icon icon-home"> Bioinformatics | RBGE
           
 
           
@@ -90,7 +90,11 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Wet Laboratory:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wet_labbook_template.html">Wet Lab Notebook Template</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data management:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="wheretostore.html">Where do I store my data?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wheretorun.html">Where do I run my analysis?</a></li>
@@ -109,6 +113,10 @@
 <li class="toctree-l1"><a class="reference internal" href="aligning.html">Alignment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phylogeny.html">Inferring a phylogeny</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Contact:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Getting in touch</a></li>
+</ul>
 
             
           
@@ -123,7 +131,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">RBGE's pipelines</a>
+          <a href="index.html">Bioinformatics | RBGE</a>
         
       </nav>
 
@@ -183,8 +191,8 @@
 <p>Remember we are following the Hyb_baits_pipeline from the paper <a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fpls.2015.00710/full">Nicholls et al. 2015</a>, with scripts available on github: <a class="reference external" href="https://github.com/ckidner/Targeted_enrichment">https://github.com/ckidner/Targeted_enrichment</a>.</p>
 </div>
 <details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
-You can see the content of the script here:<div class="summary-down docutils">
+<summary class="summary-title card-header bg-info text-white">
+You can see the content of the script more_tidying.sh here:<div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -224,7 +232,7 @@ cutadapt -a AGATCGGAAGAGC <span class="nv">$rev_un_p</span> &gt; <span class="nv
 </pre></div>
 </div>
 </div>
-</details><p>You can see in the top commmented section of the script that it requires two other scripts: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Needs</span> <span class="pre">ck_empties.sh</span> <span class="pre">and</span> <span class="pre">ck_remove.sh</span></code>, also available in GitHub, so make sure you have the correct path for <code class="docutils literal notranslate"><span class="pre">ck_empties.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">ck_remove.sh</span></code> the scripts inside <code class="docutils literal notranslate"><span class="pre">more_tidying.sh</span></code>. We will use <code class="docutils literal notranslate"><span class="pre">more_tidying.sh</span></code> in a loop with out trimmomatic output as input:</p>
+</details><p>You can see in the top commented section of the script that it requires two other scripts: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Needs</span> <span class="pre">ck_empties.sh</span> <span class="pre">and</span> <span class="pre">ck_remove.sh</span></code>, also available in GitHub, so make sure you have the correct path for <code class="docutils literal notranslate"><span class="pre">ck_empties.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">ck_remove.sh</span></code> the scripts inside <code class="docutils literal notranslate"><span class="pre">more_tidying.sh</span></code>. We will use <code class="docutils literal notranslate"><span class="pre">more_tidying.sh</span></code> in a loop with out trimmomatic output as input:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">read</span> f <span class="p">;</span> <span class="k">do</span> ./more_tidying.sh <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">done</span> &lt; acc
 </pre></div>
 </div>
@@ -279,7 +287,7 @@ FG35.empties                          FGIntype_1_fastqc.html                KGD4
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021 | Bioinformatics | RBGE.
+        &#169; Copyright 2021 | Bioinformatics | Royal Botanic Garden Edinburgh.
 
     </p>
   </div>

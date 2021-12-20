@@ -43,9 +43,16 @@ We are now working in our folder ``By_locus`` (you can check with ``pwd``, print
     comp36008_c0_seq1.fasta   comp41758_c0_seq1.fasta   comp44609_c0_seq1.fasta   comp46553_c1_seq1.fasta   comp50170_c0_seq12.fasta  comp52915_c0_seq2.fasta   comp54484_c0_seq1.fasta   comp816108_c0_seq1.fasta
     comp36444_c1_seq1.fasta   comp41859_c0_seq1.fasta   comp44627_c0_seq1.fasta   comp46693_c0_seq1.fasta   comp50204_c0_seq1.fasta   comp52981_c1_seq1.fasta   comp546012_c0_seq1.fasta  comp826804_c0_seq1.fasta
 
+If we open one of these alignments (for example using Aliview `<https://ormbunkar.se/aliview/>`_) you will see a file including all five accessions:
+
+.. image:: ../images/alignment_example.png
+    :alt: Example of the alignment of one of the locus.
+
+
 We will use the script ``tidy_mafft.sh`` to replace name of sequences with just the accession name, convert bases to uppercase, and align the sequences with the software `mafft <https://mafft.cbrc.jp/alignment/software/>`_.
 
 .. dropdown:: tidy_mafft.sh
+    :title: bg-info text-white
 
     .. code-block:: bash
 

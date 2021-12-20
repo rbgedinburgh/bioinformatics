@@ -24,7 +24,7 @@ And we can check the convergence of the bootstrap with:
 
 Don't forget to check raxml-ng tutorial for more options: `<https://github.com/amkozlov/raxml-ng/wiki/Tutorial>`_
 
-The file ending in ``.suport`` shows our phylogeny with bootstrap support. We can open it in FigTree. 
+The file ending in ``.support`` shows our phylogeny with bootstrap support. We can open it in FigTree. 
 
 You might want to change the label names to species name + accession, instead of only accession. We can do that with `phyx <https://github.com/FePhyFoFum/phyx>`_, more specifically with ``pxrlt`` (taxon relabelling for trees). We will need list of current and new names.
 

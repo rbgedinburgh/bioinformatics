@@ -201,7 +201,7 @@ TTTTTTTATTGTAAAGGGGAGATTTAGTATTGCATTATTTCTTCCATTGTCAAAATGCAAAGGATTACAAGGATCTACAG
 </div>
 <p>So we have 264 <em>loci</em> in our bait set. To map our trimmed reads to the bait set we will use the script <code class="docutils literal notranslate"><span class="pre">bam_me.sh</span></code>.</p>
 <details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
+<summary class="summary-title card-header bg-info text-white">
 bam_me.sh<div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="summary-up docutils">
@@ -241,7 +241,7 @@ rm *.pileup
 </div>
 </details><p>We can see that this script uses two different software: Bowtie2 and Samtools.</p>
 <details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
+<summary class="summary-title card-header bg-info text-white">
 Bowtie2 - extracts from <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">http://bowtie-bio.sourceforge.net/bowtie2/index.shtml</a>:<div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="summary-up docutils">
@@ -269,7 +269,7 @@ Bowtie2 - extracts from <a class="reference external" href="http://bowtie-bio.so
 <p class="card-text">from: <a class="reference external" href="https://github.com/BenLangmead/bowtie2/blob/master/MANUAL">https://github.com/BenLangmead/bowtie2/blob/master/MANUAL</a></p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
+<summary class="summary-title card-header bg-info text-white">
 Samtools: extracts from <a class="reference external" href="http://www.htslib.org">http://www.htslib.org</a><div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="summary-up docutils">
@@ -351,10 +351,11 @@ FG35.vcf                              FGIntype_1_fastqc.zip                 KGD4
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;FNR==1{print &quot;::::\n&quot;FILENAME&quot;\n::::&quot;}1&#39;</span> *_bowtie_output
 </pre></div>
 </div>
-<p>You can also visually explore the bam files using the software <a class="reference external" href="https://ics.hutton.ac.uk/tablet/">Tablet</a>. You will need the <code class="docutils literal notranslate"><span class="pre">.bam</span></code> and the index <code class="docutils literal notranslate"><span class="pre">.bai</span></code> files, that were already generated with the <code class="docutils literal notranslate"><span class="pre">bam_me.sh</span></code> script.</p>
+<p>You can also visually explore the bam files using the software <a class="reference external" href="https://ics.hutton.ac.uk/tablet/">Tablet</a>. You will need the <code class="docutils literal notranslate"><span class="pre">.bam</span></code> and the index <code class="docutils literal notranslate"><span class="pre">.bai</span></code> files, which were generated with the <code class="docutils literal notranslate"><span class="pre">bam_me.sh</span></code> script. Below is an example of what it looks like. It is a good idea to explore the <code class="docutils literal notranslate"><span class="pre">.bam</span></code> files to check how the reads mapped back to the baits.</p>
+<img alt="This is an example of a ``.bam`` file viewed with Tablet." src="_images/bam_file_example.png" />
 <p>One of the outputs this script produces is the vcf file. VCF is the standard file format for storing variation data.</p>
 <details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
+<summary class="summary-title card-header bg-info text-white">
 What are VCF files<div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="summary-up docutils">
@@ -366,7 +367,7 @@ What are VCF files<div class="summary-down docutils">
 </div>
 </details><p>We will use the script <code class="docutils literal notranslate"><span class="pre">clean_vcf.sh</span></code> to edit the vcf files to remove indels and calls with quality less than 36 and then output the consensus fasta. Note that we will need the perl script <code class="docutils literal notranslate"><span class="pre">vcfutils_dasta.pl</span></code> in the folder we are working on.</p>
 <details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
+<summary class="summary-title card-header bg-info text-white">
 clean_vcf.sh<div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="summary-up docutils">
@@ -412,10 +413,106 @@ rm <span class="nv">$clean</span>
 </pre></div>
 </div>
 <p>And then run:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">Targeted_enrichment</span><span class="o">/</span><span class="n">Switch_multifastas</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python /path/to/your/Targeted_enrichment/Switch_multifastas.py
 </pre></div>
 </div>
-<p>We now have a folder callled <code class="docutils literal notranslate"><span class="pre">By_locus</span></code> with 264 fasta files ready to be aligned with <a class="reference external" href="https://mafft.cbrc.jp/alignment/software/">mafft</a>.</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header bg-info text-white">
+Switch_multifastas.py<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;take a set of multifastas and re-order as by filename a set of multifastas</span>
+<span class="sd">For dealing with hyb_baits bowtie to fasta outputs</span>
+<span class="sd">needs alist f the fasta file names and a list of the loci (as in the fasta_files)</span>
+<span class="sd">set at the default - can change to querry for list names</span>
+<span class="sd">needs an output folder called By_locus&#39;&#39;&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">fasta_dict</span><span class="p">(</span><span class="n">fastafile</span><span class="p">):</span>
+      <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fastafile</span><span class="p">)</span>
+      <span class="n">name2seq</span> <span class="o">=</span> <span class="p">{}</span>
+
+      <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">):</span>
+                  <span class="n">seq</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                  <span class="n">split_line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+                  <span class="n">name</span> <span class="o">=</span> <span class="n">split_line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                  <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+                  <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                  <span class="n">seq</span> <span class="o">=</span> <span class="n">seq</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                  <span class="n">seq</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+            <span class="n">name2seq</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+
+      <span class="k">return</span> <span class="n">name2seq</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
+
+<span class="n">fastafile_list</span> <span class="o">=</span> <span class="s2">&quot;fasta_files&quot;</span>
+<span class="n">locus_list_file</span> <span class="o">=</span> <span class="s2">&quot;locus_list&quot;</span>
+
+<span class="c1">#fastafile_list = input(&quot;Which list of fasta files (full file name please)?\n&quot;)</span>
+<span class="c1">#locus_list_file = input(&quot;Which file for names of loci?\n&quot;)</span>
+
+<span class="c1">#open files for each locus (for reading and writting) ready to feed in the fastas</span>
+
+<span class="k">if</span> <span class="n">locus_list_file</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">locus_list</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">locus_list_file</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">locus_list</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">out_file_name</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.fasta&quot;</span>
+
+            <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_file_name</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># go through each fasta file pulling out the match to each locus and putting into the file</span>
+
+<span class="k">if</span> <span class="n">fastafile_list</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">fastafiles</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fastafile_list</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">fastafiles</span><span class="p">:</span>
+            <span class="n">file_name</span> <span class="o">=</span> <span class="n">file_name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">accession</span> <span class="o">=</span> <span class="n">file_name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;.fna&quot;</span><span class="p">)</span>
+
+            <span class="c1">#Make a dict of that fasta file</span>
+
+            <span class="n">ifasta_dict</span> <span class="o">=</span> <span class="n">fasta_dict</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+
+            <span class="n">keep_lines_processed</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">keep_seq_found</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">missing_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">if</span> <span class="n">locus_list_file</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+                  <span class="n">locus_list</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">locus_list_file</span><span class="p">)</span>
+                  <span class="c1">#for a locus pull out the hit and append to the correct file</span>
+                  <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">locus_list</span><span class="p">:</span>
+                        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">found_fasta</span> <span class="o">=</span> <span class="s2">&quot;&gt;&quot;</span> <span class="o">+</span>  <span class="n">accession</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                        <span class="n">keep_lines_processed</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+                        <span class="n">fasta_seq</span> <span class="o">=</span> <span class="n">ifasta_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN&quot;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">ifasta_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                              <span class="n">keep_seq_found</span> <span class="o">+=</span><span class="mi">1</span>
+                        <span class="k">else</span><span class="p">:</span>
+                              <span class="n">missing_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+                        <span class="n">found_fasta</span> <span class="o">=</span> <span class="n">found_fasta</span> <span class="o">+</span> <span class="n">fasta_seq</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                        <span class="n">locus_file_to_write</span> <span class="o">=</span> <span class="s2">&quot;By_locus/&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.fasta&quot;</span>
+                        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">locus_file_to_write</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myfile</span><span class="p">:</span>
+                              <span class="n">myfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">found_fasta</span><span class="p">)</span>
+
+
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Keep lines processed for &quot;</span> <span class="o">+</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;  = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">keep_lines_processed</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Keep sequences found for &quot;</span> <span class="o">+</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">keep_seq_found</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing for &quot;</span> <span class="o">+</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_list</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</details><p>We now have a folder callled <code class="docutils literal notranslate"><span class="pre">By_locus</span></code> with 264 fasta files ready to be aligned with <a class="reference external" href="https://mafft.cbrc.jp/alignment/software/">mafft</a>.</p>
 </div>
 
 
