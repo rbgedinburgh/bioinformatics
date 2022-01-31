@@ -2,7 +2,7 @@ Raw reads
 ==========================
 
 .. important::
-    Never work directly on your raw data. Make a copy of it to a working directory (i.e. where you will run your analysis) and keep backup copies of your raw data elsewhere (see :doc:`wheretostore`).
+    Never work directly on your raw data. Make a copy of it to a working directory (i.e. where you will run your analysis) and keep backup copies of your raw data elsewhere (see :doc:`./wheretostore`).
 
 For this tutorial, we will follow the Hyb_baits_pipeline from the paper `Nicholls et al. 2015 <https://www.frontiersin.org/articles/10.3389/fpls.2015.00710/full>`_, with scripts available on github: `<https://github.com/ckidner/Targeted_enrichment>`_. We will use five accessions used in the manuscript, available in European Nucleotide Archive, study ID ERP009747: `<https://www.ebi.ac.uk/ena/browser/view/PRJEB8722?show=reads>`_. 
 
@@ -74,8 +74,8 @@ Take a look at ``acc``:
 We will now use the script ``renaming.sh`` to rename our raw read and move them to the folder we are working on.
 
 
-.. dropdown:: You can see the content of the script renaming.sh in this dropdown menu:
-    :title: bg-info text-white
+.. dropdown:: You can see the content of the script `renaming.sh` in this dropdown menu:
+    :color: info
     
         .. code-block:: bash
 
@@ -111,7 +111,7 @@ If you have many samples, this task can take a while. Let's use the script ``ren
     In this loop, the ``acc`` is the input file that will be read one line at a time, and that value replaces the variable ``$f``. So if our ``acc`` files has five lines, the command ``./renaming.sh`` will be executed five times, each time replacing ``$f`` with a line from our input file ``acc``. 
 
 .. dropdown:: This is what you should see printed in your terminal:
-    :title: bg-info text-white
+    :color: info
 
     .. code-block:: bash
     

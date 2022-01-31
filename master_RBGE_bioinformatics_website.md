@@ -97,6 +97,16 @@ Used the [sphinx_rtd_theme](https://sphinx-rtd-theme.readthedocs.io/en/stable/).
 
 Included the extension [sphinx_panels](https://sphinx-panels.readthedocs.io/en/latest/) to create the dropdown menus.  
 
+sphinx_panels will be deprecated in favour of sphinx_design (https://github.com/executablebooks/sphinx-panels/issues/67). From Jan 31st 2022 changed to sphinx_design.
+
+Changed `conf.py` to:
+
+```
+extensions = ['myst_parser','sphinx_design']
+myst_enable_extensions = ["colon_fence"]
+```
+
+Following https://sphinx-design.readthedocs.io/en/rtd-theme/get_started.html.
 
 ## How to build 
 

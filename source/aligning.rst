@@ -52,7 +52,7 @@ If we open one of these alignments (for example using Aliview `<https://ormbunka
 We will use the script ``tidy_mafft.sh`` to replace name of sequences with just the accession name, convert bases to uppercase, and align the sequences with the software `mafft <https://mafft.cbrc.jp/alignment/software/>`_.
 
 .. dropdown:: tidy_mafft.sh
-    :title: bg-info text-white
+    :color: info
 
     .. code-block:: bash
 
@@ -195,7 +195,7 @@ Let's see what we have in our folder now:
     comp38882_c0_seq1_mafft.fasta   comp43779_c0_seq1.fasta         comp46726_c0_seq2_mafft.fasta   comp51314_c1_seq5.fasta         comp53978_c0_seq1_mafft.fasta
     comp39051_c0_seq2.fasta         comp43779_c0_seq1_mafft.fasta   comp46777_c0_seq1.fasta         comp51314_c1_seq5_mafft.fasta   comp54031_c0_seq1.fasta
 
-You can download some of the alignments to yout local machine and look at them using a graphical user interface software (e.g. Aliview `<https://ormbunkar.se/aliview/>`_). You will see that many regions of the alignments have gaps. We will use the software `trimAl <http://trimal.cgenomics.org>`_ to clip those gappy regions. trimAl is a tool for the automated removal of spurious sequences or poorly aligned regions from a multiple sequence alignment.
+You can download some of the alignments to your local machine and look at them using a graphical user interface software (e.g. Aliview `<https://ormbunkar.se/aliview/>`_). You will see that many regions of the alignments have gaps. We will use the software `trimAl <http://trimal.cgenomics.org>`_ to clip those gappy regions. trimAl is a tool for the automated removal of spurious sequences or poorly aligned regions from a multiple sequence alignment.
 
 .. code-block:: bash
 

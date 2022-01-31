@@ -7,7 +7,7 @@ We can use `Cutadapt <https://cutadapt.readthedocs.io/en/stable/>`__ to trim fur
 
 
 .. dropdown:: You can see the content of the script more_tidying.sh here: 
-    :title: bg-info text-white
+    :color: info
 
     .. code-block:: bash
 

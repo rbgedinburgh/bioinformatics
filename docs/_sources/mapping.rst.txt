@@ -30,7 +30,7 @@ This is the sequence of our baits. It has the bait name (e.g. ``>comp39600_c0_se
 So we have 264 *loci* in our bait set. To map our trimmed reads to the bait set we will use the script ``bam_me.sh``. 
 
 .. dropdown:: bam_me.sh
-      :title: bg-info text-white
+      :color: info
 
       .. code-block:: bash
 
@@ -69,7 +69,7 @@ So we have 264 *loci* in our bait set. To map our trimmed reads to the bait set 
 We can see that this script uses two different software: Bowtie2 and Samtools.  
 
 .. dropdown:: Bowtie2 - extracts from `<http://bowtie-bio.sourceforge.net/bowtie2/index.shtml>`_:
-      :title: bg-info text-white
+      :color: info
 
       Here you can see extracts from the Bowtie 2 manual, available at `<http://bowtie-bio.sourceforge.net/bowtie2/index.shtml>`_.
 
@@ -106,7 +106,7 @@ We can see that this script uses two different software: Bowtie2 and Samtools.
       from: https://github.com/BenLangmead/bowtie2/blob/master/MANUAL
 
 .. dropdown:: Samtools: extracts from `<http://www.htslib.org>`_
-      :title: bg-info text-white
+      :color: info
 
       Here you can see extracts from Samtools manual, available here `<http://www.htslib.org>`_.
 
@@ -162,6 +162,10 @@ First, we need to index the bait set for Bowtie2:
 .. code-block:: bash
 
       bowtie2-build Ref.fna Inga_unique_baits   
+
+.. note::
+
+      Here the name *Inga_unique_baits* is a choice of the user. It will be the name of the indexed baits that Bowtie2 will use for the analysis. You can choose any name of your preference but remember to change accordingly in the ``bam_me.sh`` script, more specifically in the line: ``bowtie2 --local --score-min $score -x ./Inga_unique_baits -1 $fwd_p  -2 $rev_p  -U $un_p  -S $sam 2>$bowtie``. ``Ref.fna`` is the fasta file containing the bait sequence, we will still need it in a later ``samtools`` step.
 
 Now we are ready to run the ``bam_me.sh`` script in a loop:
 
@@ -222,7 +226,7 @@ You can also visually explore the bam files using the software `Tablet <https://
 One of the outputs this script produces is the vcf file. VCF is the standard file format for storing variation data.
 
 .. dropdown:: What are VCF files
-      :title: bg-info text-white
+      :color: info
 
       The Variant Call Format (VCF) specifies the format of a text file used in bioinformatics for storing gene sequence variations. The format has been developed with the advent of large-scale genotyping and DNA sequencing projects, such as the 1000 Genomes Project. Existing formats for genetic data such as General feature format (GFF) stored all of the genetic data, much of which is redundant because it will be shared across the genomes. By using the variant call format only the variations need to be stored along with a reference genome. More info: 
       `<http://www.internationalgenome.org/wiki/Analysis/vcf4.0>`_ and 
@@ -232,7 +236,7 @@ One of the outputs this script produces is the vcf file. VCF is the standard fil
 We will use the script ``clean_vcf.sh`` to edit the vcf files to remove indels and calls with quality less than 36 and then output the consensus fasta. Note that we will need the perl script ``vcfutils_dasta.pl`` in the folder we are working on. 
 
 .. dropdown:: clean_vcf.sh
-      :title: bg-info text-white
+      :color: info
 
       .. code-block:: bash
 
@@ -288,7 +292,7 @@ And then run:
       python /path/to/your/Targeted_enrichment/Switch_multifastas.py
 
 .. dropdown:: Switch_multifastas.py
-      :title: bg-info text-white
+      :color: info
       
       .. code-block:: python
 

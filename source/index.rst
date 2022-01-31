@@ -19,6 +19,7 @@ Here you will find information about genomic data management and tutorials of th
    :maxdepth: 1
    :caption: Data management:
 
+   setup
    wheretostore
    wheretorun
    installsoftware
