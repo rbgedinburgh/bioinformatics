@@ -84,6 +84,55 @@ We will use the script ``tidy_mafft.sh`` to replace name of sequences with just 
 
         exit 0 
 
+.. dropdown:: tidy_mafft_array.sh
+      :color: info
+
+      .. tip::
+            In case you are doing your anaylisis in `Crop Diversity HPC <https://help.cropdiversity.ac.uk/index.html>`__, you can run this step as an array. An array job is a job in which the script is run concomitantly for each sample and it will be much quicker. In this link you can find more about array jobs\: `<https://help.cropdiversity.ac.uk/slurm-overview.html#array-jobs>`__. Below an example of how to run the ``tidy_mafft_array.sh`` script as an array:
+
+            .. code-block::
+
+                #!/bin/bash
+
+                # to go from the output of switch multifastas.py to the mafft files ready to trimal
+                # Catherine Kidner 18 Nov 2014 adapted to run in array Flavia Pezzini Mar 2021
+
+                #SBATCH --job-name="tidy_mafft"
+                #SBATCH --export=ALL
+                #SBATCH --mail-user=youremail@yourdomain # enter your email to receive a message once it is done.
+                #SBATCH --mail-type=END,FAIL
+                #SBATCH --output ./slurm-%x-%\A_%a.out # %x gives job name, %A job ID, %a array index 
+                #SBATCH --partition=long
+                #SBATCH --cpus-per-task=16 #number of threads, not cores
+                #SBATCH --mem=1G #adjust this according to your data.
+                #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5).
+                    
+                    
+                acc=$(sed -n "$SLURM_ARRAY_TASK_ID"p /path/to/locus_list/file)
+
+                echo "Hello world"
+
+                echo "You're working on accession $1"
+
+
+                switched=${acc}.fasta
+                no_loci_name=${acc}_f.fna
+                mafft=${acc}_mafft.fasta
+                fna=${acc}.fna
+                fasta=${acc}.fasta
+
+                sed "s/_$acc//g" $switched > $no_loci_name
+                sed "s/[rywsmkdvhb]/n/g" $no_loci_name  > $fna
+                tr '[:lower:]'  '[:upper:]' < $fna > $fasta
+                rm $no_loci_name
+                rm $fna
+                mafft --thread 8 $fasta > $mafft
+
+
+                exit 0
+      
+      To submit just type: ``sbatch tidy_mafft_array.sh``
+
 
 We will use the ``locus_list`` as input in the loop, so we need to copy it to the folder we are working on:
 

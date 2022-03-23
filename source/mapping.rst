@@ -174,6 +174,56 @@ Now we are ready to run the ``bam_me.sh`` script in a loop:
       while read f; do ./bam_me.sh "$f" ; done < acc
 
 
+.. tip::
+      In case you are doing your anaylisis in `Crop Diversity HPC <https://help.cropdiversity.ac.uk/index.html>`__, you can run this step as an array. An array job is a job in which the script is run concomitantly for each sample and it will be much quicker. In this link you can find more about array jobs\: `<https://help.cropdiversity.ac.uk/slurm-overview.html#array-jobs>`__. Below an example of how to run the ``bam_me.sh`` script as an array:
+
+      .. code-block::
+
+            #!/bin/bash
+
+            # Assumes all your reads are in a folder called trimmed and all are gzipped.
+            # Catherine Kidner 28 Oct 2014
+            # Adjusted for an array job in Mar 2022, Flavia Pezzini
+
+            #SBATCH --job-name="bam"
+            #SBATCH --export=ALL
+            #SBATCH --mail-user=youremail@yourdomain # enter your email to receive a message once it is done.
+            #SBATCH --mail-type=END,FAIL
+            #SBATCH --output ./slurm-%x-%A_%a.out # %x gives job name, %A job ID, %a array index 
+            #SBATCH --partition=long
+            #SBATCH --cpus-per-task=16 #this is the number of threads, not cores
+            #SBATCH --mem=2G #adjust this according to your data.
+            #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5).
+
+            acc=$(sed -n "$SLURM_ARRAY_TASK_ID"p /path/to/my/acc/file)
+
+            echo "Hello world"
+
+            echo "Working on $acc"
+
+            score=G,20,8
+            fwd_p=${acc}_trimmed_1.fastq.gz
+            rev_p=${acc}_trimmed_2.fastq.gz
+            un_p=${acc}_trimmed_1u.fastq,${acc}_trimmed_2u.fastq
+            sam=${acc}.sam
+            index=${acc}_sorted.bam
+            pileup=${acc}.pileup
+            vcf=${acc}.vcf
+            bowtie=${acc}_bowtie_output
+            sorted=${acc}_sorted
+
+            bowtie2 --local --score-min $score -x ./Inga_unique_baits -1 $fwd_p  -2 $rev_p  -U $un_p  -S $sam 2>$bowtie
+            samtools view -bS $sam | samtools sort -o $index $sam 
+            samtools index $index
+            bcftools mpileup -E -f Baits_all_loci.fna  $index > $pileup 
+            bcftools call -c $pileup > $vcf 
+            rm ${acc}.sam
+            rm ${acc}.pileup
+
+            exit 0
+
+      To submit just type: ``sbatch bam_me_array.sh``
+
 In our folder we now have:
 
 .. code-block:: bash
@@ -264,6 +314,62 @@ We will use the script ``clean_vcf.sh`` to edit the vcf files to remove indels a
             rm $clean
 
             exit 0
+
+
+.. dropdown:: clean_vcf_array.sh
+      :color: info
+
+      .. tip::
+            In case you are doing your anaylisis in `Crop Diversity HPC <https://help.cropdiversity.ac.uk/index.html>`__, you can run this step as an array. An array job is a job in which the script is run concomitantly for each sample and it will be much quicker. In this link you can find more about array jobs\: `<https://help.cropdiversity.ac.uk/slurm-overview.html#array-jobs>`__. Below an example of how to run the ``clean_vcf_array.sh`` script as an array:
+
+            .. code-block::
+
+                  #!/bin/bash
+
+                  # to remove tricky stuff from the vcf files and make the fasta
+                  # Input on comnad line is the accession stem
+                  # Catherine Kidner 11 Nov 2014, adapted to run in array Flavia Pezzini Mar 2021
+
+                  #SBATCH --job-name="clean_vcf"
+                  #SBATCH --export=ALL
+                  #SBATCH --mail-user=youremail@yourdomain # enter your email to receive a message once it is done.
+                  #SBATCH --mail-type=END,FAIL
+                  #SBATCH --output ./slurm-%x-%\A_%a.out # %x gives job name, %A job ID, %a array index 
+                  #SBATCH --partition=long
+                  #SBATCH --cpus-per-task=16 #number of threads, not cores
+                  #SBATCH --mem=1G #adjust this according to your data.
+                  #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5).
+
+                  acc=$(sed -n "$SLURM_ARRAY_TASK_ID"p /path/to/my/acc/file)
+
+                  echo "Hello world"
+
+                  echo "Working on $acc"
+
+
+                  vcf=${acc}.vcf
+                  clean=${acc}_clean.vcf
+                  fasta=${acc}.fasta
+
+                  grep -v "INDEL" $vcf | awk '{if ($6 >= 36) print $0}' > $clean
+
+                  perl vcfutils_fasta.pl vcf2fq $clean > $fasta
+
+                  rm $clean
+
+                  exit 0
+
+      To submit just type: ``sbatch clean_vcf_array.sh``
+
+
+
+
+
+Let's run the ``clean_vcf.sh`` script:
+
+.. code-block:: bash
+
+      while read f; do ./clean_vcf.sh.sh "$f" ; done < acc
 
 
 We now have one fasta file per accession, and each file contains the recovered sequence for each of the 264 *loci*.

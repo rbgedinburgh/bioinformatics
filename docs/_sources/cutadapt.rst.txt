@@ -38,8 +38,8 @@ We can use `Cutadapt <https://cutadapt.readthedocs.io/en/stable/>`__ to trim fur
         cutadapt -a AGATCGGAAGAGC $rev_p > $rev_p_done 2>> cut_out
         cutadapt -a AGATCGGAAGAGC $fwd_un_p > $fwd_u_done 2>> cut_out
         cutadapt -a AGATCGGAAGAGC $rev_un_p > $rev_u_done 2>> cut_out
-        ./ck_empties_fastq.sh $acc
-        ./ck_remove_fastq.sh $acc
+        ./ck_empties.sh $acc
+        ./ck_remove.sh $acc
 
 
         exit 0
@@ -89,3 +89,54 @@ Here is what we have in our folder now:
     FG113_trimmed_2u.fastq                FGIntype.empties                      KGD465_1_fastqc.html                  renaming.sh
     FG35                                  FGIntype_1.fastq.gz                   KGD465_1_fastqc.zip                   zygia917
     FG35.empties                          FGIntype_1_fastqc.html                KGD465_2.fastq.gz                     zygia917.empties
+
+.. tip::
+      In case you are doing your anaylisis in `Crop Diversity HPC <https://help.cropdiversity.ac.uk/index.html>`__, you can run this step as an array. An array job is a job in which the script is run concomitantly for each sample and it will be much quicker. In this link you can find more about array jobs\: `<https://help.cropdiversity.ac.uk/slurm-overview.html#array-jobs>`__. Below an example of how to run the ``more_tidying.sh`` script as an array:
+
+      .. code-block::
+
+            #!/bin/bash
+
+            # to trim the trimmomatic output one more time
+            # Needs ck_empties.sh and ck_remove.sh
+            # Catherine Kidner 3 Nov 2014
+            # Adjusted for an array job in Mar 2022, Flavia Pezzini
+
+            #SBATCH --job-name="cutadapt"
+            #SBATCH --export=ALL
+            #SBATCH --mail-user=youremail@yourdomain # enter your email to receive a message once it is done.
+            #SBATCH --mail-type=END,FAIL
+            #SBATCH --output ./slurm-%x-%A_%a.out # %x gives job name, %A job ID, %a array index 
+            #SBATCH --partition=long
+            #SBATCH --cpus-per-task=16 #number of threads, not cores
+            #SBATCH --mem=1G #adjust this according to your data.
+            #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5).
+
+
+            acc=$(sed -n "$SLURM_ARRAY_TASK_ID"p /path/to/my/acc/file)
+
+            echo "Hello world"
+
+            echo "You're working on accession $acc"
+
+            fwd_p=${acc}_forward_paired.fq
+            rev_p=${acc}_reverse_paired.fq
+            fwd_un_p=${acc}_forward_unpaired.fq
+            rev_un_p=${acc}_reverse_unpaired.fq
+
+            fwd_p_done=${acc}_trimmed_1.fastq
+            rev_p_done=${acc}_trimmed_2.fastq
+            fwd_u_done=${acc}_trimmed_1u.fastq
+            rev_u_done=${acc}_trimmed_2u.fastq
+
+            cutadapt -a AGATCGGAAGAGC $fwd_p > $fwd_p_done 2>> cut_out
+            cutadapt -a AGATCGGAAGAGC $rev_p > $rev_p_done 2>> cut_out
+            cutadapt -a AGATCGGAAGAGC $fwd_un_p > $fwd_u_done 2>> cut_out
+            cutadapt -a AGATCGGAAGAGC $rev_un_p > $rev_u_done 2>> cut_out
+            ./ck_empties.sh $acc
+            ./ck_remove.sh $acc
+
+            exit 0
+
+
+      To submit just type: ``sbatch more_tidying_array.sh``

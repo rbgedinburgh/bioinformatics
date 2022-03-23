@@ -173,6 +173,59 @@ tidy_mafft.sh<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 </div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header sd-bg-info sd-bg-text-info">
+tidy_mafft_array.sh<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p class="sd-card-text">In case you are doing your anaylisis in <a class="reference external" href="https://help.cropdiversity.ac.uk/index.html">Crop Diversity HPC</a>, you can run this step as an array. An array job is a job in which the script is run concomitantly for each sample and it will be much quicker. In this link you can find more about array jobs: <a class="reference external" href="https://help.cropdiversity.ac.uk/slurm-overview.html#array-jobs">https://help.cropdiversity.ac.uk/slurm-overview.html#array-jobs</a>. Below an example of how to run the <code class="docutils literal notranslate"><span class="pre">tidy_mafft_array.sh</span></code> script as an array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+
+# to go from the output of switch multifastas.py to the mafft files ready to trimal
+# Catherine Kidner 18 Nov 2014 adapted to run in array Flavia Pezzini Mar 2021
+
+#SBATCH --job-name=&quot;tidy_mafft&quot;
+#SBATCH --export=ALL
+#SBATCH --mail-user=youremail@yourdomain # enter your email to receive a message once it is done.
+#SBATCH --mail-type=END,FAIL
+#SBATCH --output ./slurm-%x-%\A_%a.out # %x gives job name, %A job ID, %a array index
+#SBATCH --partition=long
+#SBATCH --cpus-per-task=16 #number of threads, not cores
+#SBATCH --mem=1G #adjust this according to your data.
+#SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5).
+
+
+acc=$(sed -n &quot;$SLURM_ARRAY_TASK_ID&quot;p /path/to/locus_list/file)
+
+echo &quot;Hello world&quot;
+
+echo &quot;You&#39;re working on accession $1&quot;
+
+
+switched=${acc}.fasta
+no_loci_name=${acc}_f.fna
+mafft=${acc}_mafft.fasta
+fna=${acc}.fna
+fasta=${acc}.fasta
+
+sed &quot;s/_$acc//g&quot; $switched &gt; $no_loci_name
+sed &quot;s/[rywsmkdvhb]/n/g&quot; $no_loci_name  &gt; $fna
+tr &#39;[:lower:]&#39;  &#39;[:upper:]&#39; &lt; $fna &gt; $fasta
+rm $no_loci_name
+rm $fna
+mafft --thread 8 $fasta &gt; $mafft
+
+
+exit 0
+</pre></div>
+</div>
+</div>
+<p class="sd-card-text">To submit just type: <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">tidy_mafft_array.sh</span></code></p>
+</div>
 </details><p>We will use the <code class="docutils literal notranslate"><span class="pre">locus_list</span></code> as input in the loop, so we need to copy it to the folder we are working on:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp ../locus_list .
 </pre></div>
