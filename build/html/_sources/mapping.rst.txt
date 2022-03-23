@@ -193,7 +193,7 @@ Now we are ready to run the ``bam_me.sh`` script in a loop:
             #SBATCH --partition=long
             #SBATCH --cpus-per-task=16 #this is the number of threads, not cores
             #SBATCH --mem=2G #adjust this according to your data.
-            #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5).
+            #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5). It is a good practice to ask for a maximum of 25 tasks at a time.
 
             acc=$(sed -n "$SLURM_ARRAY_TASK_ID"p /path/to/my/acc/file)
 
@@ -338,7 +338,7 @@ We will use the script ``clean_vcf.sh`` to edit the vcf files to remove indels a
                   #SBATCH --partition=long
                   #SBATCH --cpus-per-task=16 #number of threads, not cores
                   #SBATCH --mem=1G #adjust this according to your data.
-                  #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5).
+                  #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5). It is a good practice to ask for a maximum of 25 tasks at a time.
 
                   acc=$(sed -n "$SLURM_ARRAY_TASK_ID"p /path/to/my/acc/file)
 

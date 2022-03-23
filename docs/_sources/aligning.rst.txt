@@ -105,7 +105,7 @@ We will use the script ``tidy_mafft.sh`` to replace name of sequences with just 
                 #SBATCH --partition=long
                 #SBATCH --cpus-per-task=16 #number of threads, not cores
                 #SBATCH --mem=1G #adjust this according to your data.
-                #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5).
+                #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5). It is a good practice to ask for a maximum of 25 tasks at a time.
                     
                     
                 acc=$(sed -n "$SLURM_ARRAY_TASK_ID"p /path/to/locus_list/file)

@@ -1,7 +1,7 @@
 Raw reads 
 ==========================
 
-.. important::
+.. warning::
     Never work directly on your raw data. Make a copy of it to a working directory (i.e. where you will run your analysis) and keep backup copies of your raw data elsewhere (see :doc:`./wheretostore`).
 
 For this tutorial, we will follow the Hyb_baits_pipeline from the paper `Nicholls et al. 2015 <https://www.frontiersin.org/articles/10.3389/fpls.2015.00710/full>`_, with scripts available on github: `<https://github.com/ckidner/Targeted_enrichment>`_. We will use five accessions used in the manuscript, available in European Nucleotide Archive, study ID ERP009747: `<https://www.ebi.ac.uk/ena/browser/view/PRJEB8722?show=reads>`_. 
