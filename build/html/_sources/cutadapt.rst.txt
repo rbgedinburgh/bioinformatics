@@ -107,8 +107,8 @@ Here is what we have in our folder now:
             #SBATCH --mail-user=youremail@yourdomain # enter your email to receive a message once it is done.
             #SBATCH --mail-type=END,FAIL
             #SBATCH --output ./slurm-%x-%A_%a.out # %x gives job name, %A job ID, %a array index 
-            #SBATCH --partition=long
-            #SBATCH --cpus-per-task=16 #number of threads, not cores
+            #SBATCH --partition=short
+            #SBATCH --cpus-per-task=4 #number of threads, not cores
             #SBATCH --mem=1G #adjust this according to your data.
             #SBATCH --array=0-4 # the number of samples you have. We have five accessions we use 0-4 because Bash array is zero-indexed (instead of 1-5). It is a good practice to ask for a maximum of 25 tasks at a time. 
 
